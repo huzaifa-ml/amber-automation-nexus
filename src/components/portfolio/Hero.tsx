@@ -1,15 +1,14 @@
 import { ArrowRight, Workflow, Bot, Code2, Database, Box } from "lucide-react";
 import huzaifa from "@/assets/huzaifa.jpg.asset.json";
-import { HEADLINES } from "@/data/portfolio";
-import { Typewriter } from "./Typewriter";
 
 const ORBIT = [
-  { label: "n8n", Icon: Workflow, pos: "left-0 top-[10%] sm:left-[-6%] sm:top-[12%]", delay: "0s" },
-  { label: "AI Agents", Icon: Bot, pos: "right-0 top-[2%] sm:right-[-8%] sm:top-[4%]", delay: "1.1s" },
-  { label: "Python", Icon: Code2, pos: "left-[-2%] bottom-[24%] sm:left-[-12%] sm:bottom-[26%]", delay: "2.2s" },
-  { label: "RAG", Icon: Database, pos: "right-[-2%] bottom-[28%] sm:right-[-12%] sm:bottom-[30%]", delay: "0.6s" },
-  { label: "Docker", Icon: Box, pos: "left-[30%] bottom-[-2%] sm:left-[32%] sm:bottom-[-4%]", delay: "1.7s" },
+  { label: "n8n", Icon: Workflow, angle: 0 },
+  { label: "AI Agents", Icon: Bot, angle: 72 },
+  { label: "Python", Icon: Code2, angle: 144 },
+  { label: "RAG", Icon: Database, angle: 216 },
+  { label: "Docker", Icon: Box, angle: 288 },
 ];
+
 
 export function Hero() {
   return (
