@@ -1,0 +1,116 @@
+import { ArrowRight, Workflow, Bot, Code2, Database, Box } from "lucide-react";
+import huzaifa from "@/assets/huzaifa.jpg.asset.json";
+import { HEADLINES } from "@/data/portfolio";
+import { Typewriter } from "./Typewriter";
+
+const ORBIT = [
+  { label: "n8n", Icon: Workflow, pos: "left-[-6%] top-[12%]", delay: "0s" },
+  { label: "AI Agents", Icon: Bot, pos: "right-[-8%] top-[4%]", delay: "1.1s" },
+  { label: "Python", Icon: Code2, pos: "left-[-12%] bottom-[26%]", delay: "2.2s" },
+  { label: "RAG", Icon: Database, pos: "right-[-12%] bottom-[30%]", delay: "0.6s" },
+  { label: "Docker", Icon: Box, pos: "left-[32%] bottom-[-4%]", delay: "1.7s" },
+];
+
+export function Hero() {
+  return (
+    <section
+      id="home"
+      className="ambient-gold relative flex min-h-screen scroll-mt-20 items-center px-5 pb-28 pt-24 sm:px-8"
+    >
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+        {/* Left: text */}
+        <div>
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-3.5 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-gold">
+            <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
+            AI Automation Architect
+          </span>
+
+          <h1 className="mt-6 font-display text-[clamp(2.5rem,9vw,5.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em]">
+            <span className="block text-foreground">Muhammad</span>
+            <span className="block text-gold">Huzaifa</span>
+          </h1>
+
+          <div className="mt-6">
+            <Typewriter lines={HEADLINES} />
+          </div>
+
+          <div className="mt-6 max-w-xl space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p>
+              I build systems that save time—connecting AI, automation, and APIs to turn
+              repetitive work into smarter workflows.
+            </p>
+            <p>
+              From idea to execution, I design intelligent solutions that run behind the scenes
+              and keep business moving.
+            </p>
+          </div>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#projects"
+              className="group inline-flex items-center gap-2 rounded-lg bg-gold px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_30px_-10px_var(--gold)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_38px_-8px_var(--gold)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              Explore my work
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </a>
+            <a
+              href="#contact"
+              className="group inline-flex items-center gap-2 rounded-lg border border-gold/45 px-5 py-3 text-sm font-semibold text-foreground transition-all duration-300 hover:bg-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+              Let&apos;s build
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </a>
+          </div>
+        </div>
+
+        {/* Right: portrait + ecosystem */}
+        <div className="relative mx-auto w-full max-w-[22rem] sm:max-w-[26rem]">
+          <div
+            aria-hidden="true"
+            className="absolute inset-[-18%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_65%)] blur-2xl"
+          />
+          <div className="relative aspect-square">
+            <div
+              aria-hidden="true"
+              className="absolute inset-[6%] rounded-full border border-gold/15"
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-[13%] rounded-full border border-gold/25"
+            />
+            <div className="absolute inset-[19%] overflow-hidden rounded-full border border-gold/40 shadow-[0_0_60px_-20px_var(--gold)]">
+              <img
+                src={huzaifa.url}
+                alt="Portrait of Muhammad Huzaifa, AI Automation Architect"
+                width={560}
+                height={560}
+                className="h-full w-full object-cover object-top"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-[linear-gradient(to_top,color-mix(in_oklab,var(--background)_85%,transparent),transparent_55%)]"
+              />
+            </div>
+
+            {ORBIT.map(({ label, Icon, pos, delay }) => (
+              <div
+                key={label}
+                style={{ animationDelay: delay }}
+                className={`float-soft absolute ${pos} flex items-center gap-2 rounded-xl border border-border bg-card/90 px-3 py-2 shadow-[0_16px_36px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md`}
+              >
+                <Icon className="h-4 w-4 text-gold" aria-hidden="true" />
+                <span className="text-xs font-medium text-foreground">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
