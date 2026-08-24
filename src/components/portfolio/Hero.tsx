@@ -1,15 +1,14 @@
 import { ArrowRight, Workflow, Bot, Code2, Database, Box } from "lucide-react";
 import huzaifa from "@/assets/huzaifa.jpg.asset.json";
-import { HEADLINES } from "@/data/portfolio";
-import { Typewriter } from "./Typewriter";
 
 const ORBIT = [
-  { label: "n8n", Icon: Workflow, pos: "left-0 top-[10%] sm:left-[-6%] sm:top-[12%]", delay: "0s" },
-  { label: "AI Agents", Icon: Bot, pos: "right-0 top-[2%] sm:right-[-8%] sm:top-[4%]", delay: "1.1s" },
-  { label: "Python", Icon: Code2, pos: "left-[-2%] bottom-[24%] sm:left-[-12%] sm:bottom-[26%]", delay: "2.2s" },
-  { label: "RAG", Icon: Database, pos: "right-[-2%] bottom-[28%] sm:right-[-12%] sm:bottom-[30%]", delay: "0.6s" },
-  { label: "Docker", Icon: Box, pos: "left-[30%] bottom-[-2%] sm:left-[32%] sm:bottom-[-4%]", delay: "1.7s" },
+  { label: "n8n", Icon: Workflow, angle: 0 },
+  { label: "AI Agents", Icon: Bot, angle: 72 },
+  { label: "Python", Icon: Code2, angle: 144 },
+  { label: "RAG", Icon: Database, angle: 216 },
+  { label: "Docker", Icon: Box, angle: 288 },
 ];
+
 
 export function Hero() {
   return (
@@ -25,14 +24,11 @@ export function Hero() {
             AI Automation Architect
           </span>
 
-          <h1 className="mt-6 font-display text-[clamp(2.5rem,9vw,5.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em]">
-            <span className="block text-foreground">Muhammad</span>
-            <span className="block text-gold">Huzaifa</span>
+          <h1 className="mt-6 max-w-2xl font-display text-[clamp(2.1rem,6vw,3.9rem)] font-bold uppercase leading-[1.02] tracking-[-0.03em]">
+            <span className="block text-foreground">Architecting AI systems</span>
+            <span className="block text-gold">that run the work for you</span>
           </h1>
 
-          <div className="mt-6">
-            <Typewriter lines={HEADLINES} />
-          </div>
 
           <div className="mt-6 max-w-xl space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
             <p>
