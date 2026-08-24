@@ -50,7 +50,7 @@ export function Typewriter({ lines }: { lines: string[] }) {
   return (
     <p
       aria-label={lines.join(", ")}
-      className="flex min-h-[3.5rem] items-start font-display text-xl font-semibold uppercase tracking-tight text-gold sm:min-h-[4rem] sm:text-2xl md:text-3xl"
+      className="flex min-h-[4.5rem] items-start font-display text-xl font-semibold uppercase tracking-tight text-gold sm:min-h-[4rem] sm:text-2xl md:text-3xl"
     >
       <span aria-hidden="true">{text}</span>
       <span
