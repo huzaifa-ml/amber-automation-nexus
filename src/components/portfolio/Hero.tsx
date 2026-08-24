@@ -24,14 +24,11 @@ export function Hero() {
             AI Automation Architect
           </span>
 
-          <h1 className="mt-6 font-display text-[clamp(2.5rem,9vw,5.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.03em]">
-            <span className="block text-foreground">Muhammad</span>
-            <span className="block text-gold">Huzaifa</span>
+          <h1 className="mt-6 max-w-2xl font-display text-[clamp(2.1rem,6vw,3.9rem)] font-bold uppercase leading-[1.02] tracking-[-0.03em]">
+            <span className="block text-foreground">Architecting AI systems</span>
+            <span className="block text-gold">that run the work for you</span>
           </h1>
 
-          <div className="mt-6">
-            <Typewriter lines={HEADLINES} />
-          </div>
 
           <div className="mt-6 max-w-xl space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
             <p>
