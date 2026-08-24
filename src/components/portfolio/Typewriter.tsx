@@ -15,12 +15,12 @@ export function Typewriter({ lines }: { lines: string[] }) {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      setText(lines[index]);
+      setText(lines[index] ?? "");
       const t = setTimeout(() => setIndex((i) => (i + 1) % lines.length), 3200);
       return () => clearTimeout(t);
     }
 
-    const full = lines[index];
+    const full = lines[index] ?? "";
     let timer: ReturnType<typeof setTimeout>;
 
     if (phase === "typing") {
