@@ -98,19 +98,24 @@ export function Hero() {
               {ORBIT.map(({ label, Icon, angle }) => (
                 <div
                   key={label}
-                  className="absolute left-1/2 top-1/2 h-0 w-0"
-                  style={{ transform: `rotate(${angle}deg) translateY(-48%)` }}
+                  className="absolute inset-0"
+                  style={{ transform: `rotate(${angle}deg)` }}
                 >
-                  <div
-                    className="orbit-counter flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold/35 bg-card/90 shadow-[0_16px_36px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md"
-                    style={{ ["--orbit-angle" as string]: `${angle}deg` }}
-                    title={label}
-                  >
-                    <Icon className="h-5 w-5 text-gold" />
+                  <div className="absolute left-1/2 top-0 -ml-[22px] -mt-[22px] h-11 w-11">
+                    <div className="orbit-counter h-full w-full">
+                      <div
+                        className="flex h-full w-full items-center justify-center rounded-full border border-gold/35 bg-card/90 shadow-[0_16px_36px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md"
+                        style={{ transform: `rotate(${-angle}deg)` }}
+                        title={label}
+                      >
+                        <Icon className="h-5 w-5 text-gold" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
             </div>
+
 
           </div>
         </div>
