@@ -1,14 +1,14 @@
 import { ArrowRight, Workflow, Bot, Code2, Database, Box } from "lucide-react";
-import huzaifa from "@/assets/huzaifa.jpg.asset.json";
+import huzaifa from "@/assets/huzaifa-cutout.png";
+import goldRing from "@/assets/gold-ring.png";
 
 const ORBIT = [
-  { label: "n8n", Icon: Workflow, angle: 0 },
-  { label: "AI Agents", Icon: Bot, angle: 72 },
-  { label: "Python", Icon: Code2, angle: 144 },
-  { label: "RAG", Icon: Database, angle: 216 },
-  { label: "Docker", Icon: Box, angle: 288 },
+  { label: "n8n", Icon: Workflow, angle: 0, bg: "#1f2126", fg: "#FF6D5A" },
+  { label: "AI Agents", Icon: Bot, angle: 72, bg: "#6D3BF5", fg: "#FFFFFF" },
+  { label: "Python", Icon: Code2, angle: 144, bg: "#242A36", fg: "#FFD343" },
+  { label: "RAG", Icon: Database, angle: 216, bg: "#0EA47A", fg: "#FFFFFF" },
+  { label: "Docker", Icon: Box, angle: 288, bg: "#2496ED", fg: "#FFFFFF" },
 ];
-
 
 export function Hero() {
   return (
@@ -28,7 +28,6 @@ export function Hero() {
             <span className="block text-foreground">Architecting AI systems</span>
             <span className="block text-gold">that run the work for you</span>
           </h1>
-
 
           <div className="mt-6 max-w-xl space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
             <p>
@@ -65,58 +64,59 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right: portrait + ecosystem */}
-        <div className="relative mx-auto w-[86%] max-w-[20rem] sm:w-full sm:max-w-[26rem]">
+        {/* Right: portrait + rotating tech symbols */}
+        <div className="relative mx-auto w-[88%] max-w-[21rem] sm:w-full sm:max-w-[27rem]">
           <div
             aria-hidden="true"
-            className="absolute inset-[-18%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--gold)_18%,transparent),transparent_65%)] blur-2xl"
+            className="absolute inset-[-14%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--gold)_16%,transparent),transparent_65%)] blur-2xl"
           />
-          <div className="relative aspect-square">
-            <div
-              aria-hidden="true"
-              className="absolute inset-[6%] rounded-full border border-gold/15"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute inset-[13%] rounded-full border border-gold/25"
-            />
-            <div className="absolute inset-[19%] overflow-hidden rounded-full border border-gold/40 shadow-[0_0_60px_-20px_var(--gold)]">
-              <img
-                src={huzaifa.url}
-                alt="Portrait of Muhammad Huzaifa, AI Automation Architect"
-                width={560}
-                height={560}
-                className="h-full w-full object-cover object-top"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-[linear-gradient(to_top,color-mix(in_oklab,var(--background)_85%,transparent),transparent_55%)]"
-              />
-            </div>
 
+          <div className="relative aspect-square">
+            {/* Golden brush ring backdrop */}
+            <img
+              src={goldRing}
+              alt=""
+              aria-hidden="true"
+              width={1024}
+              height={1024}
+              className="ring-spin absolute inset-[4%] h-[92%] w-[92%] select-none opacity-90"
+            />
+
+            {/* Portrait cutout */}
+            <img
+              src={huzaifa}
+              alt="Portrait of Muhammad Huzaifa, AI Automation Architect"
+              width={928}
+              height={1152}
+              style={{
+                maskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+                WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+              }}
+              className="absolute bottom-0 left-1/2 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.65)]"
+            />
+
+            {/* Rotating symbols */}
             <div className="orbit-spin absolute inset-0" aria-hidden="true">
-              {ORBIT.map(({ label, Icon, angle }) => (
+              {ORBIT.map(({ label, Icon, angle, bg, fg }) => (
                 <div
                   key={label}
                   className="absolute inset-0"
                   style={{ transform: `rotate(${angle}deg)` }}
                 >
-                  <div className="absolute left-1/2 top-0 -ml-[22px] -mt-[22px] h-11 w-11">
+                  <div className="absolute left-1/2 top-0 -ml-[28px] -mt-[28px] h-14 w-14">
                     <div className="orbit-counter h-full w-full">
                       <div
-                        className="flex h-full w-full items-center justify-center rounded-full border border-gold/35 bg-card/90 shadow-[0_16px_36px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md"
-                        style={{ transform: `rotate(${-angle}deg)` }}
+                        className="flex h-full w-full items-center justify-center rounded-[1.15rem] shadow-[0_18px_38px_-14px_rgba(0,0,0,0.85)] ring-1 ring-white/10"
+                        style={{ transform: `rotate(${-angle}deg)`, backgroundColor: bg }}
                         title={label}
                       >
-                        <Icon className="h-5 w-5 text-gold" />
+                        <Icon className="h-7 w-7" style={{ color: fg }} strokeWidth={2.1} />
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-
-
           </div>
         </div>
       </div>

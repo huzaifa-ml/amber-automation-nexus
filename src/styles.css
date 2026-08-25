@@ -201,11 +201,15 @@
 }
 
 @utility orbit-spin {
-  animation: orbit-spin 32s linear infinite;
+  animation: orbit-spin 70s linear infinite;
 }
 
 @utility orbit-counter {
-  animation: orbit-counter 32s linear infinite;
+  animation: orbit-counter 70s linear infinite;
+}
+
+@utility ring-spin {
+  animation: orbit-spin 120s linear infinite;
 }
 
 @utility float-soft {
