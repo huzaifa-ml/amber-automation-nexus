@@ -94,16 +94,29 @@ export function Hero() {
               />
             </div>
 
-            {ORBIT.map(({ label, Icon, pos, delay }) => (
-              <div
-                key={label}
-                style={{ animationDelay: delay }}
-                className={`float-soft absolute ${pos} flex items-center gap-2 rounded-xl border border-border bg-card/90 px-3 py-2 shadow-[0_16px_36px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md`}
-              >
-                <Icon className="h-4 w-4 text-gold" aria-hidden="true" />
-                <span className="text-xs font-medium text-foreground">{label}</span>
-              </div>
-            ))}
+            <div className="orbit-spin absolute inset-0" aria-hidden="true">
+              {ORBIT.map(({ label, Icon, angle }) => (
+                <div
+                  key={label}
+                  className="absolute inset-0"
+                  style={{ transform: `rotate(${angle}deg)` }}
+                >
+                  <div className="absolute left-1/2 top-0 -ml-[22px] -mt-[22px] h-11 w-11">
+                    <div className="orbit-counter h-full w-full">
+                      <div
+                        className="flex h-full w-full items-center justify-center rounded-full border border-gold/35 bg-card/90 shadow-[0_16px_36px_-24px_rgba(0,0,0,0.9)] backdrop-blur-md"
+                        style={{ transform: `rotate(${-angle}deg)` }}
+                        title={label}
+                      >
+                        <Icon className="h-5 w-5 text-gold" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+
           </div>
         </div>
       </div>
