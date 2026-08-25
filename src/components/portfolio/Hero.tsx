@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="ambient-gold relative flex min-h-screen scroll-mt-20 items-center px-5 pb-28 pt-24 sm:px-8"
+      className="ambient-gold relative flex min-h-screen scroll-mt-20 items-center px-5 pb-40 pt-14 sm:px-8 sm:pt-16 lg:pb-44 lg:pt-12"
     >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         {/* Left: text */}
