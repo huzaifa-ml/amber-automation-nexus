@@ -88,7 +88,11 @@ export function Hero() {
               alt="Portrait of Muhammad Huzaifa, AI Automation Architect"
               width={928}
               height={1152}
-              className="absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.65)]"
+              style={{
+                maskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+                WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+              }}
+              className="absolute bottom-0 left-1/2 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.65)]"
             />
 
             {/* Rotating symbols */}
