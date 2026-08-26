@@ -52,17 +52,23 @@ export const PRINCIPLES = [
 
 export type Service = {
   id: string;
+  slug: string;
   number: string;
   title: string;
   summary: string;
   detail: string;
   points: string[];
   tags: string[];
+  positioning: string;
+  overview: string[];
+  builds: string[];
+  process: { step: string; body: string }[];
 };
 
 export const SERVICES: Service[] = [
   {
     id: "workflow-automation",
+    slug: "ai-workflow-automation",
     number: "01",
     title: "AI Workflow Automation",
     summary: "Repetitive operations turned into intelligent, self-running workflows.",
@@ -75,25 +81,28 @@ export const SERVICES: Service[] = [
       "Error handling so workflows run unattended",
     ],
     tags: ["n8n", "AI Agents", "APIs", "Google Sheets"],
-  },
-  {
-    id: "consulting",
-    number: "02",
-    title: "AI Automation Consulting",
-    summary: "Deciding what to automate — and what should stay human.",
-    detail:
-      "Before building anything, I review how work actually flows through the business, identify where AI and automation create real leverage, and lay out a practical architecture to get there.",
-    points: [
-      "Automation opportunity assessment",
-      "Tooling and architecture recommendations",
-      "Implementation roadmap and sequencing",
-      "Guidance on AI agent scope and boundaries",
+    positioning: "Operations that run themselves — with AI making the judgement calls.",
+    overview: [
+      "Most teams lose hours every week moving data between tools, re-typing the same information and chasing follow-ups. I rebuild those processes as automated workflows in n8n, with AI agents placed exactly where human judgement used to be needed.",
+      "The result is a system that runs unattended: it triggers on real events, handles its own errors, keeps structured records and only asks for a human when something genuinely needs one.",
     ],
-    tags: ["Systems Design", "Process Audit", "AI Strategy"],
+    builds: [
+      "End-to-end n8n workflows for content, leads, support and internal operations",
+      "AI agents that classify, summarise, draft and decide inside a workflow",
+      "Structured data pipelines into Google Sheets and databases",
+      "Notification and escalation paths for edge cases",
+    ],
+    process: [
+      { step: "Map", body: "Walk the existing manual process end to end and document every input, decision and output." },
+      { step: "Design", body: "Decide what automation handles, what AI handles and what stays human." },
+      { step: "Build", body: "Implement the workflow, connect the tools and wire in structured storage." },
+      { step: "Harden", body: "Add error paths, retries and logging so it runs without supervision." },
+    ],
   },
   {
     id: "rapid-development",
-    number: "03",
+    slug: "rapid-ai-solution-development",
+    number: "02",
     title: "Rapid AI Solution Development",
     summary: "Working AI systems built fast, then hardened.",
     detail:
@@ -105,10 +114,28 @@ export const SERVICES: Service[] = [
       "Containerised, portable deployments",
     ],
     tags: ["AI Agents", "RAG", "Python", "Docker"],
+    positioning: "From idea to a working AI system in days, not quarters.",
+    overview: [
+      "When an idea needs proving, a long specification phase is the wrong answer. I build a functioning version first — an agent, assistant or pipeline you can actually use — and let real usage shape what gets built next.",
+      "Once the direction is confirmed, the prototype gets hardened: better prompts, retrieval over your own content, structured outputs and a containerised deployment that can be moved anywhere.",
+    ],
+    builds: [
+      "AI agents and assistants with tool access",
+      "RAG systems over documents, knowledge bases and internal content",
+      "Python services and processing pipelines",
+      "Dockerised deployments that run the same everywhere",
+    ],
+    process: [
+      { step: "Scope", body: "Define the single outcome the prototype has to prove." },
+      { step: "Prototype", body: "Build a working version fast, using the shortest reliable path." },
+      { step: "Iterate", body: "Refine prompts, retrieval and logic against real usage." },
+      { step: "Deploy", body: "Containerise and hand over something dependable for daily use." },
+    ],
   },
   {
     id: "api-integrations",
-    number: "04",
+    slug: "api-integrations",
+    number: "03",
     title: "API Integrations",
     summary: "Your tools, connected and speaking the same language.",
     detail:
@@ -120,8 +147,26 @@ export const SERVICES: Service[] = [
       "Authentication and reliable request handling",
     ],
     tags: ["REST APIs", "HTTP Requests", "JavaScript", "Tool Calling"],
+    positioning: "One connected system instead of a stack of disconnected tools.",
+    overview: [
+      "Business tools rarely speak the same language out of the box. I connect them directly through their APIs — platforms, AI models, automation workflows and internal services — so data moves on its own instead of being copied by hand.",
+      "Each integration includes the unglamorous parts that make it reliable: authentication, data transformation, retries and clear handling when an upstream service misbehaves.",
+    ],
+    builds: [
+      "REST API integrations between business platforms",
+      "Custom transformation logic in JavaScript inside workflows",
+      "Tool-calling endpoints that AI agents can safely use",
+      "Authenticated, resilient request handling with sensible retries",
+    ],
+    process: [
+      { step: "Audit", body: "Review the APIs available and what data actually needs to move." },
+      { step: "Connect", body: "Implement authenticated requests and map the data between systems." },
+      { step: "Transform", body: "Add the custom logic that makes both sides agree on shape and meaning." },
+      { step: "Verify", body: "Test failure cases so the integration degrades predictably." },
+    ],
   },
 ];
+
 
 export type Project = {
   number: string;
