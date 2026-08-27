@@ -15,8 +15,12 @@ const ITEMS = [
 
 export function FloatingNav() {
   const [active, setActive] = useState("home");
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const onHome = pathname === "/";
 
   useEffect(() => {
+    if (!onHome) return;
+
     const sections = ITEMS.map((i) => document.getElementById(i.id)).filter(
       (el): el is HTMLElement => Boolean(el),
     );
