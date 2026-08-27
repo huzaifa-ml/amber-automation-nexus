@@ -71,22 +71,22 @@ export function Services() {
         <Reveal delay={100}>
           <article
             key={active.id}
-            className="surface-card animate-fade-in flex h-full flex-col p-6 shadow-[0_0_60px_-40px_var(--gold)] sm:p-8"
+            className="surface-card animate-fade-in flex flex-col p-5 shadow-[0_0_60px_-40px_var(--gold)] sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
-              <p className="font-display text-4xl font-bold text-gold/30">{active.number}</p>
+              <p className="font-display text-3xl font-bold text-gold/30">{active.number}</p>
               <span className="rounded-full border border-gold/30 bg-gold/10 px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-gold">
                 Service {active.number}
               </span>
             </div>
 
-            <h3 className="mt-3 font-display text-2xl font-bold text-foreground sm:text-3xl">
+            <h3 className="mt-2 font-display text-2xl font-bold text-foreground sm:text-3xl">
               {active.title}
             </h3>
-            <p className="mt-2 text-sm font-medium text-gold">{active.summary}</p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{active.detail}</p>
+            <p className="mt-1.5 text-sm font-medium text-gold">{active.summary}</p>
+            <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{active.detail}</p>
 
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-4 space-y-2">
               {active.points.map((p) => (
                 <li key={p} className="flex items-start gap-3 text-sm text-muted-foreground">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
@@ -95,13 +95,13 @@ export function Services() {
               ))}
             </ul>
 
-            <div className="mt-7 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2">
               {active.tags.map((t) => (
                 <TechPill key={t}>{t}</TechPill>
               ))}
             </div>
 
-            <div className="mt-8 border-t border-border pt-5">
+            <div className="mt-5 border-t border-border pt-4">
               <p className="text-[0.6rem] uppercase tracking-[0.25em] text-muted-foreground">
                 Next step
               </p>
