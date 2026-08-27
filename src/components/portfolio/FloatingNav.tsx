@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { Home, User, Briefcase, Layers, Quote, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 
 const ITEMS = [
   { id: "home", label: "Home", Icon: Home },
