@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useRouterState } from "@tanstack/react-router";
 import { Home, User, Briefcase, Layers, Quote, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 
 const ITEMS = [
   { id: "home", label: "Home", Icon: Home },
@@ -13,8 +15,12 @@ const ITEMS = [
 
 export function FloatingNav() {
   const [active, setActive] = useState("home");
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const onHome = pathname === "/";
 
   useEffect(() => {
+    if (!onHome) return;
+
     const sections = ITEMS.map((i) => document.getElementById(i.id)).filter(
       (el): el is HTMLElement => Boolean(el),
     );
@@ -31,7 +37,7 @@ export function FloatingNav() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [onHome]);
 
   return (
     <nav
@@ -40,11 +46,12 @@ export function FloatingNav() {
     >
       <ul className="flex items-center gap-1 rounded-full border border-border bg-background/70 p-1.5 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:gap-1.5 sm:p-2">
         {ITEMS.map(({ id, label, Icon }) => {
-          const isActive = active === id;
+          const isActive = onHome && active === id;
           return (
             <li key={id}>
               <a
-                href={`#${id}`}
+                href={onHome ? `#${id}` : `/#${id}`}
+
                 aria-label={label}
                 aria-current={isActive ? "true" : undefined}
                 title={label}
