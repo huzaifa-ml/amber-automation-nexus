@@ -17,7 +17,7 @@ export function Services() {
         subtitle="Three ways I work with teams to put AI and automation into daily operations."
       />
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+      <div className="mt-16 grid gap-8 lg:mt-24 lg:grid-cols-2 lg:items-start">
         <Reveal>
           <ul className="flex flex-col" role="tablist" aria-label="Services">
             {SERVICES.map((s) => {
