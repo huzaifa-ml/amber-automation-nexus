@@ -46,11 +46,12 @@ export function FloatingNav() {
     >
       <ul className="flex items-center gap-1 rounded-full border border-border bg-background/70 p-1.5 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:gap-1.5 sm:p-2">
         {ITEMS.map(({ id, label, Icon }) => {
-          const isActive = active === id;
+          const isActive = onHome && active === id;
           return (
             <li key={id}>
               <a
-                href={`#${id}`}
+                href={onHome ? `#${id}` : `/#${id}`}
+
                 aria-label={label}
                 aria-current={isActive ? "true" : undefined}
                 title={label}
