@@ -11,19 +11,23 @@ export function Services() {
 
   return (
     <Section id="services">
-      <SectionHeading
-        label="Services"
-        title="How I can help"
-        subtitle="Three ways I work with teams to put AI and automation into daily operations."
-      />
+      <div className="grid gap-8 lg:grid-cols-2 lg:items-stretch">
+        <Reveal className="flex h-full flex-col">
+          <SectionHeading
+            label="Services"
+            title="How I can help"
+            subtitle="Three ways I work with teams to put AI and automation into daily operations."
+          />
 
-      <div className="mt-16 grid gap-8 lg:mt-24 lg:grid-cols-2 lg:items-start">
-        <Reveal>
-          <ul className="flex flex-col" role="tablist" aria-label="Services">
+          <ul
+            className="mt-10 flex flex-1 flex-col lg:mt-14"
+            role="tablist"
+            aria-label="Services"
+          >
             {SERVICES.map((s) => {
               const isActive = s.id === activeId;
               return (
-                <li key={s.id}>
+                <li key={s.id} className="flex flex-1 flex-col">
                   <button
                     type="button"
                     role="tab"
@@ -32,7 +36,7 @@ export function Services() {
                     onFocus={() => setActiveId(s.id)}
                     onClick={() => setActiveId(s.id)}
                     className={cn(
-                      "group flex w-full items-center gap-5 border-b border-border px-2 py-6 text-left transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      "group flex h-full w-full items-center gap-5 border-b border-border px-2 py-6 text-left transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       isActive ? "translate-x-1 border-gold/40" : "hover:translate-x-1",
                     )}
                   >
@@ -68,10 +72,10 @@ export function Services() {
           </ul>
         </Reveal>
 
-        <Reveal delay={100}>
+        <Reveal className="h-full" delay={100}>
           <article
             key={active.id}
-            className="surface-card animate-fade-in flex flex-col p-5 shadow-[0_0_60px_-40px_var(--gold)] sm:p-6"
+            className="surface-card animate-fade-in flex h-full flex-col p-5 shadow-[0_0_60px_-40px_var(--gold)] sm:p-6"
           >
             <div className="flex items-start justify-between gap-4">
               <p className="font-display text-3xl font-bold text-gold/30">{active.number}</p>
