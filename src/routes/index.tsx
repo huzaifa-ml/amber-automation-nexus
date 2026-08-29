@@ -39,6 +39,7 @@ function Index() {
         © {new Date().getFullYear()} Muhammad Huzaifa — AI Automation Architect
       </footer>
       <FloatingNav />
+      <WhatsAppFab />
     </main>
   );
 }
