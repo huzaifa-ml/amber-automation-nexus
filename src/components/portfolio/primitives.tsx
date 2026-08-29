@@ -48,7 +48,7 @@ export function Reveal({
 
 export function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-[0.28em] text-gold">
+    <span className="inline-flex items-center gap-2 text-[0.83rem] font-medium uppercase tracking-[0.28em] text-gold">
       <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
       {children}
     </span>
