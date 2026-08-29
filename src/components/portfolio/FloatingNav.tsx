@@ -56,7 +56,10 @@ export function FloatingNav() {
   return (
     <nav
       aria-label="Section navigation"
-      className="fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)]"
+      className={cn(
+        "fixed inset-x-0 bottom-0 z-50 flex justify-center px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] transition-[opacity,transform] duration-[350ms] ease-out",
+        hidden ? "pointer-events-none translate-y-[130%] opacity-0" : "translate-y-0 opacity-100",
+      )}
     >
       <ul className="flex items-center gap-1 rounded-full border border-border bg-background/70 p-1.5 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.9)] backdrop-blur-xl sm:gap-1.5 sm:p-2">
         {ITEMS.map(({ id, label, Icon }) => {

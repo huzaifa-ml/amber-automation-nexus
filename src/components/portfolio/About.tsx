@@ -27,11 +27,14 @@ export function About() {
                 loading="lazy"
                 width={160}
                 height={160}
-                className="h-24 w-24 shrink-0 rounded-2xl border border-gold/30 object-cover object-top sm:h-32 sm:w-32"
+                className="h-[5.25rem] w-[5.25rem] shrink-0 rounded-2xl border border-gold/30 object-cover object-top sm:h-28 sm:w-28"
               />
               <div className="min-w-0">
-                <h3 className="font-display text-xl font-bold text-foreground">
-                  AI Automation Architect &amp; AI student
+                <p className="font-display text-2xl font-bold uppercase tracking-tight text-foreground sm:text-3xl">
+                  Muhammad Huzaifa
+                </p>
+                <h3 className="mt-1 font-display text-base font-semibold text-gold sm:text-lg">
+                  AI Automation Architect &amp; AI Student
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   I build AI automation systems that simplify complex business operations —
