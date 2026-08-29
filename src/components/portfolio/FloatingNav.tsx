@@ -15,8 +15,22 @@ const ITEMS = [
 
 export function FloatingNav() {
   const [active, setActive] = useState("home");
+  const [hidden, setHidden] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const onHome = pathname === "/";
+
+  useEffect(() => {
+    let last = window.scrollY;
+    const onDirScroll = () => {
+      const y = window.scrollY;
+      const delta = y - last;
+      if (y <= 24) setHidden(false);
+      else if (Math.abs(delta) > 6) setHidden(delta > 0);
+      last = y;
+    };
+    window.addEventListener("scroll", onDirScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onDirScroll);
+  }, []);
 
   useEffect(() => {
     if (!onHome) return;
