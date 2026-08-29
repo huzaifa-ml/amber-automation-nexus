@@ -6,6 +6,7 @@ import { Projects } from "@/components/portfolio/Projects";
 import { Testimonials } from "@/components/portfolio/Testimonials";
 import { Contact } from "@/components/portfolio/Contact";
 import { FloatingNav } from "@/components/portfolio/FloatingNav";
+import { WhatsAppFab } from "@/components/portfolio/WhatsAppFab";
 
 const title = "Muhammad Huzaifa — AI Automation Architect";
 const description =
@@ -38,6 +39,7 @@ function Index() {
         © {new Date().getFullYear()} Muhammad Huzaifa — AI Automation Architect
       </footer>
       <FloatingNav />
+      <WhatsAppFab />
     </main>
   );
 }
