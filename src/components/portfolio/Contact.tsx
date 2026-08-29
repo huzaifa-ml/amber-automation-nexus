@@ -211,7 +211,7 @@ export function Contact() {
                   className="mt-6 animate-in fade-in slide-in-from-right-2 duration-300"
                 >
                   <h3 className="font-display text-xl font-bold text-foreground sm:text-2xl">
-                    {STEPS[step].title}
+                    {STEPS[step]?.title}
                   </h3>
 
                   {step === 0 ? (
