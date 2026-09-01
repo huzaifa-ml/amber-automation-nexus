@@ -263,3 +263,66 @@ export const TESTIMONIALS = [
     role: "Marketing Director, Islamabad",
   },
 ];
+
+export const FAQS = [
+  {
+    number: "01",
+    question: "What kind of processes can you automate?",
+    answer:
+      "I automate repetitive business processes involving data entry, lead generation, customer support, content workflows, notifications, reporting, and communication. If a process follows repeatable steps, there is usually an opportunity to make it smarter and more automated.",
+  },
+  {
+    number: "02",
+    question: "What tools and technologies do you work with?",
+    answer:
+      "My core stack includes n8n, AI Agents, Python, RAG, Docker, APIs, webhooks, and AI models. I connect these technologies with the tools a business already uses to create practical automation systems.",
+  },
+  {
+    number: "03",
+    question: "Can you build AI agents, not just basic automations?",
+    answer:
+      "Yes. I build AI-powered agents that can understand requests, make decisions, use connected tools, retrieve information, and perform actions. The goal is to create systems that can actually work through a process rather than simply trigger a fixed sequence of steps.",
+  },
+  {
+    number: "04",
+    question: "Can you integrate my existing tools and software?",
+    answer:
+      "Yes. I can connect APIs, webhooks, databases, spreadsheets, AI services, communication platforms, and other business tools. If a platform provides a usable API or integration method, I can evaluate how it can fit into the automation.",
+  },
+  {
+    number: "05",
+    question: "Do I need to replace my existing software?",
+    answer:
+      "No. The goal is usually to connect and improve the systems you already use rather than replace everything. I design automation around your existing workflow wherever possible.",
+  },
+  {
+    number: "06",
+    question: "How do you approach an automation project?",
+    answer:
+      "I first understand the existing process, identify repetitive or inefficient steps, map the workflow, then design and build the automation. After that, I test the system, handle edge cases, and refine it so it can operate reliably.",
+  },
+  {
+    number: "07",
+    question: "Can you automate lead generation and research?",
+    answer:
+      "Yes. I can build systems that discover potential leads, research businesses, collect relevant information, qualify prospects, score leads, and organize the results into a structured workflow for follow-up.",
+  },
+  {
+    number: "08",
+    question: "Can you build AI customer support systems?",
+    answer:
+      "Yes. I can build AI support agents that understand customer questions, provide relevant responses, handle common requests, and connect with external tools when an action needs to be performed.",
+  },
+  {
+    number: "09",
+    question: "Can you automate content creation and publishing?",
+    answer:
+      "Yes. I can build workflows that take an idea, generate AI-assisted content, create or prepare visual assets, organize the results, and move them through a publishing workflow using connected platforms and APIs.",
+  },
+  {
+    number: "10",
+    question: "What happens after the automation is built?",
+    answer:
+      "The system is tested against the real workflow, including expected and unexpected scenarios. The goal is to leave you with an automation that can run reliably with minimal manual intervention rather than simply a workflow that works in a demo.",
+  },
+];
