@@ -73,7 +73,6 @@ export function Faq() {
                   id={panelId}
                   role="region"
                   aria-labelledby={buttonId}
-                  hidden={!isOpen}
                   className={cn(
                     "grid transition-all duration-300 ease-out",
                     isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
