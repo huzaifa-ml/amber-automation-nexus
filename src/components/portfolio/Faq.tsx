@@ -5,23 +5,27 @@ import { cn } from "@/lib/utils";
 import { Reveal, Section, SectionLabel } from "./primitives";
 
 export function Faq() {
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState<string[]>([]);
+
+  const toggle = (n: string) =>
+    setOpen((prev) => (prev.includes(n) ? prev.filter((x) => x !== n) : [...prev, n]));
 
   return (
     <Section id="faq">
       <Reveal className="mx-auto max-w-2xl text-center">
         <SectionLabel>FAQ</SectionLabel>
         <h2 className="mt-4 font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl">
-          Questions, answered.
+          Common questions
         </h2>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          A few things you may want to know before we build.
+          Anything else, reach out directly — happy to talk through your specific setup.
         </p>
       </Reveal>
 
       <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-3">
+
         {FAQS.map((f, i) => {
-          const isOpen = open === f.number;
+          const isOpen = open.includes(f.number);
           const panelId = `faq-panel-${f.number}`;
           const buttonId = `faq-button-${f.number}`;
           return (
@@ -38,7 +42,7 @@ export function Faq() {
                     id={buttonId}
                     aria-expanded={isOpen}
                     aria-controls={panelId}
-                    onClick={() => setOpen(isOpen ? null : f.number)}
+                    onClick={() => toggle(f.number)}
                     className="flex w-full items-center gap-4 px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-6 sm:py-5"
                   >
                     <span className="text-[0.7rem] font-medium tracking-[0.18em] text-gold/70">
