@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
-import { Home, User, Briefcase, Layers, Quote, Mail } from "lucide-react";
+import { Home, User, Briefcase, Layers, Quote, HelpCircle, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 
@@ -10,6 +10,7 @@ const ITEMS = [
   { id: "services", label: "Services", Icon: Briefcase },
   { id: "projects", label: "Projects", Icon: Layers },
   { id: "testimonials", label: "Testimonials", Icon: Quote },
+  { id: "faq", label: "FAQ", Icon: HelpCircle },
   { id: "contact", label: "Contact", Icon: Mail },
 ];
 

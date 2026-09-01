@@ -4,6 +4,7 @@ import { About } from "@/components/portfolio/About";
 import { Services } from "@/components/portfolio/Services";
 import { Projects } from "@/components/portfolio/Projects";
 import { Testimonials } from "@/components/portfolio/Testimonials";
+import { Faq } from "@/components/portfolio/Faq";
 import { Contact } from "@/components/portfolio/Contact";
 import { FloatingNav } from "@/components/portfolio/FloatingNav";
 import { WhatsAppFab } from "@/components/portfolio/WhatsAppFab";
@@ -34,6 +35,7 @@ function Index() {
       <Services />
       <Projects />
       <Testimonials />
+      <Faq />
       <Contact />
       <footer className="border-t border-border px-5 pb-28 pt-8 text-center text-xs text-muted-foreground">
         © {new Date().getFullYear()} Muhammad Huzaifa — AI Automation Architect
