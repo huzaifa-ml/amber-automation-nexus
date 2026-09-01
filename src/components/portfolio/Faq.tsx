@@ -25,7 +25,7 @@ export function Faq() {
       <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-3">
 
         {FAQS.map((f, i) => {
-          const isOpen = open === f.number;
+          const isOpen = open.includes(f.number);
           const panelId = `faq-panel-${f.number}`;
           const buttonId = `faq-button-${f.number}`;
           return (
@@ -42,7 +42,7 @@ export function Faq() {
                     id={buttonId}
                     aria-expanded={isOpen}
                     aria-controls={panelId}
-                    onClick={() => setOpen(isOpen ? null : f.number)}
+                    onClick={() => toggle(f.number)}
                     className="flex w-full items-center gap-4 px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:px-6 sm:py-5"
                   >
                     <span className="text-[0.7rem] font-medium tracking-[0.18em] text-gold/70">
