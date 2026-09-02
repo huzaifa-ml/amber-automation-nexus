@@ -238,13 +238,15 @@
   animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
-@media (hover: hover) and (pointer: fine) and (min-width: 64rem) {
-  .project-pointer-preview {
-    display: block;
-  }
-}
-
 @media (hover: hover) {
+  @media (pointer: fine) {
+    @media (min-width: 64rem) {
+      .project-pointer-preview {
+        display: block;
+      }
+    }
+  }
+
   .whatsapp-fab:hover {
     width: 10.5rem;
   }
