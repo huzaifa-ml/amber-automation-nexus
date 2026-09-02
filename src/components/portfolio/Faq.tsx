@@ -12,17 +12,19 @@ export function Faq() {
 
   return (
     <Section id="faq">
-      <Reveal className="mx-auto max-w-2xl text-center">
-        <SectionLabel>FAQ</SectionLabel>
-        <h2 className="mt-4 font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl">
-          Common questions
-        </h2>
-        <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Anything else, reach out directly — happy to talk through your specific setup.
-        </p>
-      </Reveal>
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.4fr)] lg:gap-16">
+        <Reveal className="max-w-md lg:sticky lg:top-24 lg:self-start">
+          <SectionLabel>FAQ</SectionLabel>
+          <h2 className="mt-4 font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            Common questions
+          </h2>
+          <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            Anything else, reach out directly — happy to talk through your specific setup.
+          </p>
+        </Reveal>
 
-      <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-3">
+        <div className="flex flex-col gap-3">
+
 
         {FAQS.map((f, i) => {
           const isOpen = open.includes(f.number);
