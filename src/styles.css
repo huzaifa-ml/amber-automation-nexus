@@ -238,6 +238,12 @@
   animation: pulse-dot 2.4s ease-in-out infinite;
 }
 
+@media (hover: hover) and (pointer: fine) and (min-width: 64rem) {
+  .project-pointer-preview {
+    display: block;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
