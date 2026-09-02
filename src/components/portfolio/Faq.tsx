@@ -94,7 +94,9 @@ export function Faq() {
             </Reveal>
           );
         })}
+        </div>
       </div>
     </Section>
+
   );
 }
