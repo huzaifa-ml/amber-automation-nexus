@@ -170,52 +170,93 @@ export const SERVICES: Service[] = [
 
 export type Project = {
   number: string;
+  slug: string;
   category: string;
   title: string;
+  summary: string;
   problem: string;
   solution: string;
   role: string;
   tech: string[];
+  whatItDoes: string[];
+  /** Add real screenshots here later — the detail page renders a placeholder per entry. */
+  gallery: { src?: string; caption: string }[];
 };
 
 export const PROJECTS: Project[] = [
   {
     number: "01",
+    slug: "ai-content-publishing",
     category: "Content Automation",
-    title: "AI-Powered Social Media Content Engine",
+    title: "AI Content Creation & Publishing System",
+    summary:
+      "An end-to-end AI automation system that turns content ideas into ready-to-publish social media content and visual assets.",
     problem:
       "Producing consistent social content by hand consumes hours of writing, prompting and asset management every week.",
     solution:
       "Automatically generates social media content, creates AI image-generation prompts, produces visual assets, stores the results, and prepares them for publishing.",
     role: "Designed and built the complete AI-powered content automation pipeline.",
     tech: ["n8n", "Google Gemini", "KIE AI", "Nano Banana", "Google Sheets", "Blotato"],
+    whatItDoes: [
+      "Turns a content idea into written social media content",
+      "Creates AI image-generation prompts from that content",
+      "Produces the visual assets for each post",
+      "Stores the generated content and assets",
+      "Prepares everything for publishing",
+    ],
+    gallery: [{ caption: "Workflow overview" }, { caption: "Generated output" }],
   },
   {
     number: "02",
+    slug: "ai-lead-generation",
     category: "Lead Generation",
     title: "AI Lead Generation & Research System",
+    summary:
+      "An AI-powered lead generation and research workflow that discovers potential businesses, researches their websites, extracts contact information, evaluates their AI and automation usage, qualifies prospects, and stores the results.",
     problem:
       "Finding and qualifying prospects manually means slow research, scattered notes and inconsistent lead quality.",
     solution:
       "Finds potential businesses, researches their websites, extracts contact information, analyzes their AI/automation usage, scores leads, and stores qualified prospects in Google Sheets.",
     role: "Designed the lead-generation, research, extraction, qualification, and data-management workflow.",
     tech: ["n8n", "AI Agents", "Google Sheets", "JavaScript", "HTTP Requests", "Web Scraping"],
+    whatItDoes: [
+      "Discovers potential businesses that match the target profile",
+      "Researches each business website automatically",
+      "Extracts contact information from the sources it finds",
+      "Evaluates the business's AI and automation usage",
+      "Scores and qualifies the prospect",
+      "Stores qualified prospects in Google Sheets",
+    ],
+    gallery: [{ caption: "Research workflow" }, { caption: "Lead sheet" }],
   },
   {
     number: "03",
+    slug: "voice-receptionist",
     category: "Voice AI",
     title: "Voice Receptionist",
+    summary:
+      "An AI voice receptionist that communicates naturally with callers and uses connected tools to perform actions during conversations.",
     problem:
       "Incoming calls need immediate, natural responses and real actions — not a static phone menu.",
     solution:
       "An AI voice receptionist that communicates naturally with callers and uses connected tools to perform actions during conversations.",
     role: "Built and configured the voice agent, connected external tools, and tested real-time tool execution.",
     tech: ["ElevenLabs", "AI Agents", "n8n", "APIs", "Tool Calling"],
+    whatItDoes: [
+      "Answers calls and speaks with callers naturally",
+      "Understands what the caller is asking for",
+      "Calls connected tools during the conversation",
+      "Performs real actions in real time instead of routing menus",
+    ],
+    gallery: [{ caption: "Agent configuration" }, { caption: "Tool execution" }],
   },
   {
     number: "04",
+    slug: "ai-content-creation",
     category: "Publishing Pipeline",
     title: "AI Content Creation & Publishing System",
+    summary:
+      "Automates the creation of social media content from an idea, generates AI-assisted content and media, and moves it through the publishing workflow.",
     problem:
       "Getting an idea from concept to a published post involves too many disconnected tools and manual handoffs.",
     solution:
@@ -229,19 +270,37 @@ export const PROJECTS: Project[] = [
       "APIs",
       "Social Media Platforms",
     ],
+    whatItDoes: [
+      "Takes an idea as the starting point for a social media post",
+      "Generates AI-assisted content for that idea",
+      "Generates the accompanying media",
+      "Moves the finished post through the publishing workflow",
+    ],
+    gallery: [{ caption: "Publishing pipeline" }, { caption: "Post output" }],
   },
   {
     number: "05",
+    slug: "ai-customer-support",
     category: "Customer Support",
     title: "AI Customer Support Agent",
+    summary:
+      "An AI-powered support agent that understands customer questions, provides relevant answers, handles common requests, and connects with external tools to automate support tasks.",
     problem:
       "Support teams spend most of their day answering the same questions and performing routine account actions.",
     solution:
       "An AI-powered support agent that understands customer questions, provides relevant answers, handles common requests, and connects with external tools to automate support tasks.",
     role: "Designed and built the AI support workflow, including agent logic, tool integration, and automated customer interactions.",
     tech: ["AI Agents", "n8n", "Google Gemini", "APIs", "Tool Calling"],
+    whatItDoes: [
+      "Understands incoming customer questions",
+      "Provides relevant answers from the connected knowledge",
+      "Handles common, repetitive requests automatically",
+      "Connects with external tools to complete support tasks",
+    ],
+    gallery: [{ caption: "Agent logic" }, { caption: "Support conversation" }],
   },
 ];
+
 
 export const TESTIMONIALS = [
   {
