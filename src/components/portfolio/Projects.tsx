@@ -84,7 +84,7 @@ export function Projects() {
         <div
           aria-hidden="true"
           style={{ transform: `translate3d(${pos.x + 24}px, ${pos.y - 90}px, 0)` }}
-          className={`pointer-events-none absolute left-0 top-0 z-20 hidden w-[16rem] rounded-xl border border-gold/25 bg-card/95 p-3 shadow-[0_18px_50px_-20px_color-mix(in_oklab,var(--gold)_45%,transparent)] backdrop-blur-sm transition-[opacity,scale] duration-300 [@media_(hover:hover)_and_(pointer:fine)]:lg:block ${
+          className={`project-pointer-preview pointer-events-none absolute left-0 top-0 z-20 hidden w-[16rem] rounded-xl border border-gold/25 bg-card/95 p-3 shadow-[0_18px_50px_-20px_color-mix(in_oklab,var(--gold)_45%,transparent)] backdrop-blur-sm transition-[opacity,scale] duration-300 ${
             activeProject ? "scale-100 opacity-100" : "scale-95 opacity-0"
           }`}
         >
