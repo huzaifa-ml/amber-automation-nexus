@@ -173,131 +173,245 @@ export type Project = {
   slug: string;
   category: string;
   title: string;
+  /** Short label used in the hover preview */
+  previewTagline: string;
+  previewTech: string;
   summary: string;
-  problem: string;
-  solution: string;
-  role: string;
+  overview: string[];
+  howItWorks: string[];
+  capabilities: string[];
+  benefits: string[];
   tech: string[];
-  whatItDoes: string[];
-  /** Add real screenshots here later — the detail page renders a placeholder per entry. */
-  gallery: { src?: string; caption: string }[];
+  role: string;
+  figures: { value: string; label: string }[];
+  /** Swap the `src` values to update screenshots later. */
+  gallery: { src: string; caption: string }[];
 };
+
+import w1 from "@/assets/workflow-1.png.asset.json";
+import w2 from "@/assets/workflow-2.png.asset.json";
+import w3 from "@/assets/workflow-3.png.asset.json";
+import w4 from "@/assets/workflow-4.png.asset.json";
+import w5 from "@/assets/workflow-5.png.asset.json";
+import w6 from "@/assets/workflow-6.png.asset.json";
+import w7 from "@/assets/workflow-7.png.asset.json";
+import w8 from "@/assets/workflow-8.png.asset.json";
 
 export const PROJECTS: Project[] = [
   {
     number: "01",
-    slug: "ai-content-publishing",
+    slug: "ai-content-creation",
     category: "Content Automation",
-    title: "AI Content Creation & Publishing System",
+    title: "AI Content Creation",
+    previewTagline: "Content generation & publishing automation",
+    previewTech: "n8n · Gemini · KIE AI",
     summary:
-      "An end-to-end AI automation system that turns content ideas into ready-to-publish social media content and visual assets.",
-    problem:
-      "Producing consistent social content by hand consumes hours of writing, prompting and asset management every week.",
-    solution:
-      "Automatically generates social media content, creates AI image-generation prompts, produces visual assets, stores the results, and prepares them for publishing.",
-    role: "Designed and built the complete AI-powered content automation pipeline.",
-    tech: ["n8n", "Google Gemini", "KIE AI", "Nano Banana", "Google Sheets", "Blotato"],
-    whatItDoes: [
-      "Turns a content idea into written social media content",
-      "Creates AI image-generation prompts from that content",
-      "Produces the visual assets for each post",
-      "Stores the generated content and assets",
-      "Prepares everything for publishing",
+      "An AI-powered content automation system that transforms ideas into social media content, visual assets, videos, and publishing-ready outputs.",
+    overview: [
+      "The system automates the stages of content production that normally happen across several disconnected tools: writing the content, describing the visuals, generating the assets, producing video and preparing everything for publishing.",
+      "Each stage is an explicit part of an n8n workflow, so the output of one step becomes the structured input of the next instead of being copied by hand.",
     ],
-    gallery: [{ caption: "Workflow overview" }, { caption: "Generated output" }],
+    howItWorks: [
+      "A schedule or idea input starts the workflow and pulls the source content",
+      "AI models create the scenes and written content for each piece",
+      "Image prompts are generated from that content",
+      "Images are produced, including close-up and winner variations",
+      "Video prompts are generated and passed to video generation",
+      "Rendered outputs and prompts are logged into Google Sheets",
+      "Finished content is moved toward the publishing destinations",
+    ],
+    capabilities: [
+      "Creating content and scenes",
+      "Generating image prompts",
+      "Generating visual assets",
+      "Creating close-up and winner images",
+      "Generating video prompts",
+      "Generating videos",
+      "Preparing and logging outputs",
+      "Moving content toward publishing",
+    ],
+    benefits: [
+      "Reduces repetitive content-production work",
+      "Connects multiple AI generation steps into one pipeline",
+      "Removes manual movement of assets between tools",
+      "Gives the content workflow a clear, structured shape",
+      "Makes content production repeatable",
+      "Moves content toward publishing with less manual intervention",
+    ],
+    tech: ["n8n", "Google Gemini", "KIE AI", "Nano Banana", "Google Sheets", "Blotato"],
+    role: "Designed and built the complete AI-powered content automation pipeline.",
+    figures: [
+      { value: "03", label: "Workflow screenshots" },
+      { value: "06", label: "Core technologies" },
+      { value: "Multi-stage", label: "Content pipeline" },
+    ],
+    gallery: [
+      { src: w1.url, caption: "Image prompt generation, image generation and sheet logging" },
+      { src: w2.url, caption: "Carousel content pipeline with structured output parsing" },
+      { src: w3.url, caption: "Scene creation, close-up and winner images, video render and publishing" },
+    ],
   },
   {
     number: "02",
-    slug: "ai-lead-generation",
+    slug: "ai-lead-generation-research",
     category: "Lead Generation",
     title: "AI Lead Generation & Research System",
+    previewTagline: "AI-powered prospect discovery & research",
+    previewTech: "n8n · AI Agents · Web Scraping",
     summary:
-      "An AI-powered lead generation and research workflow that discovers potential businesses, researches their websites, extracts contact information, evaluates their AI and automation usage, qualifies prospects, and stores the results.",
-    problem:
-      "Finding and qualifying prospects manually means slow research, scattered notes and inconsistent lead quality.",
-    solution:
-      "Finds potential businesses, researches their websites, extracts contact information, analyzes their AI/automation usage, scores leads, and stores qualified prospects in Google Sheets.",
-    role: "Designed the lead-generation, research, extraction, qualification, and data-management workflow.",
-    tech: ["n8n", "AI Agents", "Google Sheets", "JavaScript", "HTTP Requests", "Web Scraping"],
-    whatItDoes: [
-      "Discovers potential businesses that match the target profile",
-      "Researches each business website automatically",
-      "Extracts contact information from the sources it finds",
-      "Evaluates the business's AI and automation usage",
-      "Scores and qualifies the prospect",
-      "Stores qualified prospects in Google Sheets",
+      "An AI-powered prospecting system that discovers businesses, researches accounts, qualifies opportunities, and organizes outreach-ready lead information.",
+    overview: [
+      "The workflow covers prospecting end to end: campaign configuration and lead discovery, account research and ICP qualification, buying committee research and personalized messaging, then outreach and activity tracking.",
+      "Every stage writes structured records back into Google Sheets so the research behind each prospect stays visible instead of living in scattered notes.",
     ],
-    gallery: [{ caption: "Research workflow" }, { caption: "Lead sheet" }],
+    howItWorks: [
+      "Campaign configuration defines the target profile for the run",
+      "Leads are generated, cleaned and normalised, then filtered",
+      "An account research agent gathers information on each company",
+      "An ICP qualification agent decides whether the account fits",
+      "A buying committee agent identifies the relevant people and drafts personalized messaging",
+      "An information extractor structures the result and appends it to the sheet",
+      "An outreach loop sends the emails and updates activity tracking",
+    ],
+    capabilities: [
+      "Campaign configuration",
+      "Lead discovery",
+      "Account research",
+      "ICP qualification",
+      "Buying committee research",
+      "Personalized messaging",
+      "Outreach",
+      "Activity tracking",
+    ],
+    benefits: [
+      "Reduces manual prospect research",
+      "Automates repetitive lead discovery",
+      "Structures account research consistently",
+      "Helps qualify prospects against an ICP",
+      "Keeps prospect information organised in one place",
+      "Supports personalized outreach",
+      "Reduces repetitive data collection",
+    ],
+    tech: ["n8n", "AI Agents", "Google Sheets", "JavaScript", "HTTP Requests", "Web Scraping"],
+    role: "Designed the lead-generation, research, extraction, qualification, and data-management workflow.",
+    figures: [
+      { value: "04", label: "Major workflow stages" },
+      { value: "06", label: "Core technologies" },
+      { value: "End-to-end", label: "Lead research workflow" },
+    ],
+    gallery: [
+      {
+        src: w4.url,
+        caption:
+          "Lead discovery, account research and ICP qualification, buying committee messaging, outreach and activity tracking",
+      },
+    ],
   },
   {
     number: "03",
-    slug: "voice-receptionist",
+    slug: "ai-voice-agents",
     category: "Voice AI",
-    title: "Voice Receptionist",
+    title: "AI Voice Agents",
+    previewTagline: "Voice agents connected to real actions",
+    previewTech: "ElevenLabs · n8n · Tool Calling",
     summary:
-      "An AI voice receptionist that communicates naturally with callers and uses connected tools to perform actions during conversations.",
-    problem:
-      "Incoming calls need immediate, natural responses and real actions — not a static phone menu.",
-    solution:
-      "An AI voice receptionist that communicates naturally with callers and uses connected tools to perform actions during conversations.",
-    role: "Built and configured the voice agent, connected external tools, and tested real-time tool execution.",
-    tech: ["ElevenLabs", "AI Agents", "n8n", "APIs", "Tool Calling"],
-    whatItDoes: [
-      "Answers calls and speaks with callers naturally",
-      "Understands what the caller is asking for",
-      "Calls connected tools during the conversation",
-      "Performs real actions in real time instead of routing menus",
+      "AI voice agents that communicate naturally with users and connect conversations to real actions through tools and automation.",
+    overview: [
+      "The agent handles the conversation, while an automation layer behind it performs the actual work: reading and writing records, sending messages and managing appointments.",
+      "A dedicated MCP server exposes appointment-management tool workflows to the voice receptionist, so the agent can act during a conversation rather than only answering questions.",
     ],
-    gallery: [{ caption: "Agent configuration" }, { caption: "Tool execution" }],
+    howItWorks: [
+      "A conversation or webhook event reaches the agent",
+      "Fields such as locations, dates and intent are extracted",
+      "The AI agent decides which connected tool to call",
+      "Tools handle lookups, messaging and appointment actions",
+      "Results are written to Google Sheets and confirmed back to the user",
+      "Email and WhatsApp are used for follow-up where relevant",
+    ],
+    capabilities: [
+      "Natural voice interaction",
+      "AI agent processing and routing",
+      "Connected tool execution",
+      "WhatsApp interaction",
+      "Gmail and Google Sheets integration",
+      "Appointment booking workflows",
+      "Checking availability",
+      "Finding alternate appointment slots",
+      "Executing and rescheduling appointment actions",
+    ],
+    benefits: [
+      "Handles conversations naturally",
+      "Reduces manual handling of routine requests",
+      "Connects conversations directly to real actions",
+      "Automates appointment-related tasks",
+      "Reaches connected systems through tools",
+      "Provides a more direct conversational experience",
+    ],
+    tech: ["ElevenLabs", "AI Agents", "n8n", "APIs", "Tool Calling", "MCP tools"],
+    role: "Built and configured the voice agent, connected external tools, and tested real-time tool execution.",
+    figures: [
+      { value: "02", label: "Workflow views" },
+      { value: "Tool-enabled", label: "Voice automation" },
+      { value: "Appointment", label: "Actions" },
+    ],
+    gallery: [
+      { src: w5.url, caption: "Voice agent workflow — intake, extraction, agent and email response" },
+      { src: w6.url, caption: "Tool-enabled appointment system — MCP appointment tools" },
+    ],
   },
   {
     number: "04",
-    slug: "ai-content-creation",
-    category: "Publishing Pipeline",
-    title: "AI Content Creation & Publishing System",
-    summary:
-      "Automates the creation of social media content from an idea, generates AI-assisted content and media, and moves it through the publishing workflow.",
-    problem:
-      "Getting an idea from concept to a published post involves too many disconnected tools and manual handoffs.",
-    solution:
-      "Automates the creation of social media content from an idea, generates AI-assisted content and media, and moves it through the publishing workflow.",
-    role: "Designed the end-to-end content creation and publishing automation.",
-    tech: [
-      "n8n",
-      "Google Gemini",
-      "AI Image Generation",
-      "Google Sheets",
-      "APIs",
-      "Social Media Platforms",
-    ],
-    whatItDoes: [
-      "Takes an idea as the starting point for a social media post",
-      "Generates AI-assisted content for that idea",
-      "Generates the accompanying media",
-      "Moves the finished post through the publishing workflow",
-    ],
-    gallery: [{ caption: "Publishing pipeline" }, { caption: "Post output" }],
-  },
-  {
-    number: "05",
-    slug: "ai-customer-support",
+    slug: "ai-customer-support-agents",
     category: "Customer Support",
-    title: "AI Customer Support Agent",
+    title: "AI Customer Support Agents",
+    previewTagline: "Tool-connected AI support automation",
+    previewTech: "AI Agents · n8n · RAG",
     summary:
-      "An AI-powered support agent that understands customer questions, provides relevant answers, handles common requests, and connects with external tools to automate support tasks.",
-    problem:
-      "Support teams spend most of their day answering the same questions and performing routine account actions.",
-    solution:
-      "An AI-powered support agent that understands customer questions, provides relevant answers, handles common requests, and connects with external tools to automate support tasks.",
-    role: "Designed and built the AI support workflow, including agent logic, tool integration, and automated customer interactions.",
-    tech: ["AI Agents", "n8n", "Google Gemini", "APIs", "Tool Calling"],
-    whatItDoes: [
-      "Understands incoming customer questions",
-      "Provides relevant answers from the connected knowledge",
-      "Handles common, repetitive requests automatically",
-      "Connects with external tools to complete support tasks",
+      "An AI-powered support system that understands customer requests, retrieves relevant information, performs connected actions, and escalates issues when needed.",
+    overview: [
+      "Requests arrive from Slack, are preprocessed and passed to a core AI agent that decides which tool the request needs — ticketing, status checks, escalation, knowledge retrieval, email, calendar or calculation.",
+      "A broader agent architecture sits behind it: sub-agents, web research, long-term memory in a vector store and embeddings, so answers can be grounded in real knowledge rather than guessed.",
     ],
-    gallery: [{ caption: "Agent logic" }, { caption: "Support conversation" }],
+    howItWorks: [
+      "A Slack trigger receives the customer request",
+      "Preprocessing filters and shapes the incoming data",
+      "The core agent, with model and memory attached, interprets the request",
+      "It calls the appropriate tool: ticketing, status check, escalation, knowledge base, email, calendar or calculator",
+      "Knowledge retrieval uses embeddings and a vector store for grounded answers",
+      "The response is sent back into Slack, or escalated to a human",
+    ],
+    capabilities: [
+      "Slack input and responses",
+      "Data preprocessing",
+      "Core AI agent routing",
+      "Ticket creation and status checking",
+      "Human escalation",
+      "Knowledge retrieval from a Slack knowledge base",
+      "Email, calendar and calculator tools",
+      "Embeddings and vector store",
+      "Sub-agents, web research and long-term memory",
+    ],
+    benefits: [
+      "Handles common customer questions",
+      "Retrieves relevant information before answering",
+      "Automates routine support actions",
+      "Creates and manages support tickets",
+      "Connects with communication and productivity tools",
+      "Performs certain actions directly through tools",
+      "Escalates issues to humans when necessary",
+      "Uses knowledge retrieval to improve responses",
+    ],
+    tech: ["AI Agents", "n8n", "Google Gemini", "APIs", "Tool Calling", "Slack", "Vector Store", "Embeddings"],
+    role: "Designed and built the AI support workflow, including agent logic, tool integration, and automated customer interactions.",
+    figures: [
+      { value: "02", label: "Architecture views" },
+      { value: "Multi-tool", label: "AI support system" },
+      { value: "Knowledge +", label: "Tool integration" },
+    ],
+    gallery: [
+      { src: w7.url, caption: "Support workflow — Slack, preprocessing, core agent, tools and Slack reply" },
+      { src: w8.url, caption: "Agent architecture — sub-agents, web research, memory, vector store and embeddings" },
+    ],
   },
 ];
 
