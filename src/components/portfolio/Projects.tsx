@@ -1,6 +1,5 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import { PROJECTS } from "@/data/portfolio";
 import { Reveal, Section, SectionHeading } from "./primitives";
 
@@ -14,13 +13,42 @@ export function ProjectPreviewPlaceholder({ label = "Project preview" }: { label
 
 export function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<string | null>(null);
-  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  // Smoothed cursor-follow + velocity-based tilt (mirrors the reference motion)
+  const target = useRef({ x: 0, y: 0 });
+  const current = useRef({ x: 0, y: 0 });
+  const tilt = useRef(0);
+  const raf = useRef<number | null>(null);
 
   const handleMove = useCallback((e: React.MouseEvent) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    target.current = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }, []);
+
+  useEffect(() => {
+    const tick = () => {
+      const dx = target.current.x - current.current.x;
+      const dy = target.current.y - current.current.y;
+      current.current.x += dx * 0.12;
+      current.current.y += dy * 0.12;
+      // lag translates into a gentle rotation, easing back to 0 when still
+      tilt.current += (Math.max(-12, Math.min(12, dx * 0.35)) - tilt.current) * 0.1;
+
+      const el = previewRef.current;
+      if (el) {
+        el.style.transform = `translate3d(${current.current.x + 28}px, ${
+          current.current.y - 110
+        }px, 0) rotate(${tilt.current.toFixed(2)}deg)`;
+      }
+      raf.current = requestAnimationFrame(tick);
+    };
+    raf.current = requestAnimationFrame(tick);
+    return () => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+    };
   }, []);
 
   const activeProject = PROJECTS.find((p) => p.slug === active) ?? null;
@@ -28,7 +56,7 @@ export function Projects() {
   return (
     <Section id="projects">
       <SectionHeading
-        label="Projects"
+        label="Selected projects"
         title="Selected work. Built to work."
         subtitle="AI systems, automation workflows, and intelligent solutions built to solve real operational problems."
       />
@@ -47,48 +75,36 @@ export function Projects() {
               onMouseEnter={() => setActive(p.slug)}
               onFocus={() => setActive(p.slug)}
               onBlur={() => setActive(null)}
-              className="group relative block border-b border-border px-1 py-7 outline-none transition-[transform,background-color,border-color] duration-300 hover:bg-gold/[0.035] focus-visible:bg-gold/[0.035] motion-safe:hover:translate-x-1 sm:px-4 md:py-9"
+              className={`group relative flex items-baseline justify-between gap-6 border-b border-border px-1 py-6 outline-none transition-[opacity,color] duration-500 sm:px-4 sm:py-8 md:py-10 ${
+                active && active !== p.slug ? "opacity-35" : "opacity-100"
+              }`}
             >
-              <span className="pointer-events-none absolute inset-x-0 bottom-[-1px] h-px scale-x-0 bg-gold/50 transition-transform duration-300 group-hover:scale-x-100 group-focus-visible:scale-x-100" />
-              <div className="flex items-start gap-4 sm:gap-8">
-                <span className="mt-1 font-display text-sm font-bold tabular-nums text-gold sm:text-base">
-                  {p.number}
-                </span>
+              <span className="pointer-events-none absolute inset-x-0 bottom-[-1px] h-px origin-left scale-x-0 bg-gold/60 transition-transform duration-500 group-hover:scale-x-100 group-focus-visible:scale-x-100" />
 
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-display text-xl font-bold leading-tight text-foreground transition-colors duration-300 group-hover:text-gold sm:text-2xl md:text-3xl">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-                    {p.summary}
-                  </p>
-                  <p className="mt-3 text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground/80">
-                    {p.category} <span className="text-gold/60">·</span> {p.tech.slice(0, 3).join(" · ")}
-                  </p>
+              <h3 className="font-display text-2xl font-bold leading-none tracking-tight text-foreground transition-[color,transform] duration-500 ease-out group-hover:text-gold group-focus-visible:text-gold motion-safe:group-hover:translate-x-2 sm:text-4xl md:text-5xl">
+                {p.title}
+              </h3>
 
-                  {/* Compact preview for touch / small screens */}
-                  <div className="mt-4 h-24 w-full lg:hidden">
-                    <ProjectPreviewPlaceholder />
-                  </div>
-                </div>
-
-                <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition-all duration-300 group-hover:border-gold/50 group-hover:text-gold group-focus-visible:border-gold/50">
-                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                </span>
-              </div>
+              <span className="shrink-0 whitespace-nowrap text-[0.6rem] uppercase tracking-[0.28em] text-muted-foreground transition-colors duration-500 group-hover:text-gold/80 sm:text-[0.68rem]">
+                {p.category}
+              </span>
             </Link>
           </Reveal>
         ))}
 
+        <p className="mt-6 text-right text-[0.6rem] uppercase tracking-[0.28em] text-muted-foreground/70">
+          Click on a project to see details
+        </p>
+
         {/* Cursor-following preview — desktop pointer devices only */}
         <div
+          ref={previewRef}
           aria-hidden="true"
-          style={{ transform: `translate3d(${pos.x + 24}px, ${pos.y - 90}px, 0)` }}
-          className={`project-pointer-preview pointer-events-none absolute left-0 top-0 z-20 hidden w-[16rem] rounded-xl border border-gold/25 bg-card/95 p-3 shadow-[0_18px_50px_-20px_color-mix(in_oklab,var(--gold)_45%,transparent)] backdrop-blur-sm transition-[opacity,scale] duration-300 ${
-            activeProject ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          className={`project-pointer-preview pointer-events-none absolute left-0 top-0 z-20 hidden w-[19rem] rounded-xl border border-gold/25 bg-card/95 p-3 shadow-[0_24px_60px_-24px_color-mix(in_oklab,var(--gold)_50%,transparent)] backdrop-blur-sm transition-[opacity,scale] duration-500 ease-out ${
+            activeProject ? "scale-100 opacity-100" : "scale-90 opacity-0"
           }`}
         >
-          <div className="h-32 w-full">
+          <div className="h-40 w-full">
             <ProjectPreviewPlaceholder />
           </div>
           <p className="mt-2 truncate font-display text-xs font-bold text-foreground">
