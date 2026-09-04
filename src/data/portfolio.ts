@@ -177,6 +177,10 @@ export type Project = {
   previewTagline: string;
   previewTech: string;
   summary: string;
+  positioning: string;
+  challenge: string;
+  solution: string;
+  automates: string[];
   overview: string[];
   howItWorks: string[];
   capabilities: string[];
@@ -207,6 +211,19 @@ export const PROJECTS: Project[] = [
     previewTech: "n8n · Gemini · KIE AI",
     summary:
       "An AI-powered content automation system that transforms ideas into social media content, visual assets, videos, and publishing-ready outputs.",
+    positioning: "An example of how I turn a manual content process into one connected AI pipeline.",
+    challenge:
+      "Producing content consistently means jumping between writing tools, image generators, video tools and spreadsheets, and moving every asset by hand between them.",
+    solution:
+      "A single orchestrated workflow where each stage hands structured output to the next — from idea and copy through visuals and video to publishing-ready records.",
+    automates: [
+      "Writing content and scene breakdowns",
+      "Turning content into image prompts",
+      "Generating images, including close-up and winner variations",
+      "Generating video prompts and rendering video",
+      "Logging prompts and outputs into Google Sheets",
+      "Preparing finished content for publishing",
+    ],
     overview: [
       "The system automates the stages of content production that normally happen across several disconnected tools: writing the content, describing the visuals, generating the assets, producing video and preparing everything for publishing.",
       "Each stage is an explicit part of an n8n workflow, so the output of one step becomes the structured input of the next instead of being copied by hand.",
@@ -260,6 +277,19 @@ export const PROJECTS: Project[] = [
     previewTech: "n8n · AI Agents · Web Scraping",
     summary:
       "An AI-powered prospecting system that discovers businesses, researches accounts, qualifies opportunities, and organizes outreach-ready lead information.",
+    positioning: "A selected example of AI-assisted prospect research replacing manual list building.",
+    challenge:
+      "Finding and qualifying prospects manually means opening dozens of websites, copying details into a sheet and re-reading everything to judge whether an account is even a fit.",
+    solution:
+      "An agent-driven research pipeline that discovers accounts, researches them, qualifies them against an ICP and writes structured, outreach-ready records back to one sheet.",
+    automates: [
+      "Discovering and normalising candidate businesses",
+      "Researching each company from public sources",
+      "Qualifying accounts against an ideal-customer profile",
+      "Identifying the relevant people at each account",
+      "Drafting personalized messaging",
+      "Appending structured records and tracking activity",
+    ],
     overview: [
       "The workflow covers prospecting end to end: campaign configuration and lead discovery, account research and ICP qualification, buying committee research and personalized messaging, then outreach and activity tracking.",
       "Every stage writes structured records back into Google Sheets so the research behind each prospect stays visible instead of living in scattered notes.",
@@ -316,6 +346,19 @@ export const PROJECTS: Project[] = [
     previewTech: "ElevenLabs · n8n · Tool Calling",
     summary:
       "AI voice agents that communicate naturally with users and connect conversations to real actions through tools and automation.",
+    positioning: "An example of a voice agent that does real work, not just answers questions.",
+    challenge:
+      "Routine phone and voice requests — availability checks, bookings, reschedules — occupy a person full time even though each request follows the same few steps.",
+    solution:
+      "A voice agent that handles the conversation while an automation layer executes the actual actions through connected tools during the call.",
+    automates: [
+      "Understanding spoken requests and extracting details",
+      "Choosing and calling the right connected tool",
+      "Checking availability and offering alternate slots",
+      "Booking and rescheduling appointments",
+      "Writing results back to Google Sheets",
+      "Following up over email or WhatsApp",
+    ],
     overview: [
       "The agent handles the conversation, while an automation layer behind it performs the actual work: reading and writing records, sending messages and managing appointments.",
       "A dedicated MCP server exposes appointment-management tool workflows to the voice receptionist, so the agent can act during a conversation rather than only answering questions.",
@@ -368,6 +411,19 @@ export const PROJECTS: Project[] = [
     previewTech: "AI Agents · n8n · RAG",
     summary:
       "An AI-powered support system that understands customer requests, retrieves relevant information, performs connected actions, and escalates issues when needed.",
+    positioning: "An example of support automation grounded in real knowledge, with a human escape hatch.",
+    challenge:
+      "Support teams answer the same questions repeatedly and still have to look up order status, open tickets and dig through internal documents for each one.",
+    solution:
+      "A tool-connected agent that interprets each request, retrieves grounded knowledge, performs the action itself, and escalates to a human when the request needs one.",
+    automates: [
+      "Reading and preprocessing incoming Slack requests",
+      "Interpreting intent and routing to the right tool",
+      "Creating tickets and checking their status",
+      "Retrieving grounded answers from a knowledge base",
+      "Email, calendar and calculation actions",
+      "Escalating to a human when required",
+    ],
     overview: [
       "Requests arrive from Slack, are preprocessed and passed to a core AI agent that decides which tool the request needs — ticketing, status checks, escalation, knowledge retrieval, email, calendar or calculation.",
       "A broader agent architecture sits behind it: sub-agents, web research, long-term memory in a vector store and embeddings, so answers can be grounded in real knowledge rather than guessed.",
