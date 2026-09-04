@@ -136,7 +136,7 @@ function ProjectDetail() {
         {shots[1] ? (
           <Reveal delay={140} className="mt-14">
             <div className="grid items-center gap-8 md:grid-cols-2">
-              <div className="md:order-1">
+              <div className="md:order-2">
                 <h2 className="font-display text-xl font-bold text-foreground">
                   Automation &amp; architecture
                 </h2>
@@ -154,7 +154,7 @@ function ProjectDetail() {
                   ))}
                 </ul>
               </div>
-              <div className="md:order-0">
+              <div className="md:order-1">
                 <ShotFrame shot={shots[1]} onZoom={setZoom} title={project.title} />
               </div>
             </div>
