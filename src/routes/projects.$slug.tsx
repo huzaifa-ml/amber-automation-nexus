@@ -39,7 +39,8 @@ export const Route = createFileRoute("/projects/$slug")({
 function ProjectDetail() {
   const { project, prev, next } = Route.useLoaderData();
   const [zoom, setZoom] = useState<{ src: string; caption: string } | null>(null);
-  const hero = project.gallery[0]!;
+
+  const shots = project.gallery;
 
   return (
     <main className="ambient-gold relative min-h-screen overflow-x-hidden px-5 pb-40 pt-16 sm:px-8">
@@ -53,11 +54,13 @@ function ProjectDetail() {
           Back to projects
         </Link>
 
+        {/* Header */}
         <Reveal className="mt-8">
           <SectionLabel>Project {project.number}</SectionLabel>
           <h1 className="mt-4 font-display text-3xl font-bold uppercase leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-5xl">
             {project.title}
           </h1>
+          <p className="mt-4 max-w-2xl text-sm text-gold/90 sm:text-base">{project.positioning}</p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             {project.summary}
           </p>
@@ -66,126 +69,168 @@ function ProjectDetail() {
               <TechPill key={t}>{t}</TechPill>
             ))}
           </div>
-          <p className="mt-5 max-w-2xl text-sm text-muted-foreground">
-            <span className="text-gold">My role — </span>
-            {project.role}
-          </p>
         </Reveal>
 
-        {/* Key figures */}
-        <Reveal delay={60} className="mt-10">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {project.figures.map((f) => (
-              <div key={f.label} className="surface-card p-5">
-                <p className="font-display text-2xl font-bold text-gold">{f.value}</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                  {f.label}
-                </p>
+        {/* Layout A — first screenshot beside the overview */}
+        {shots[0] ? (
+          <Reveal delay={80} className="mt-14">
+            <div className="grid items-center gap-8 md:grid-cols-2">
+              <ShotFrame shot={shots[0]} onZoom={setZoom} title={project.title} />
+              <div>
+                <h2 className="font-display text-xl font-bold text-foreground">Overview</h2>
+                {project.overview.map((o) => (
+                  <p key={o} className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                    {o}
+                  </p>
+                ))}
               </div>
+            </div>
+          </Reveal>
+        ) : null}
+
+        {/* Challenge / Solution */}
+        <Reveal delay={100} className="mt-14">
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="surface-card h-full p-6 sm:p-8">
+              <h2 className="font-display text-lg font-bold text-foreground">The challenge</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {project.challenge}
+              </p>
+            </div>
+            <div className="surface-card h-full p-6 sm:p-8">
+              <h2 className="font-display text-lg font-bold text-foreground">The solution</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {project.solution}
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* How it works — process flow */}
+        <Reveal delay={120} className="mt-14">
+          <h2 className="font-display text-xl font-bold text-foreground">How it works</h2>
+          <div className="mt-4 flex flex-wrap items-center gap-2 text-[0.6rem] uppercase tracking-[0.22em] text-gold/80">
+            {["Input", "AI / Logic", "Automation", "Output"].map((s, i) => (
+              <span key={s} className="flex items-center gap-2">
+                <span className="rounded-full border border-gold/30 px-3 py-1">{s}</span>
+                {i < 3 ? <span className="text-gold/40">→</span> : null}
+              </span>
             ))}
           </div>
+          <ol className="mt-6 grid gap-3 sm:grid-cols-2">
+            {project.howItWorks.map((s, i) => (
+              <li
+                key={s}
+                className="flex items-start gap-3 rounded-lg border border-border/70 bg-card/40 p-4 text-sm text-muted-foreground"
+              >
+                <span className="mt-0.5 shrink-0 font-mono text-[0.65rem] text-gold">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {s}
+              </li>
+            ))}
+          </ol>
         </Reveal>
 
-        {/* Main project visual */}
-        <Reveal delay={100} className="mt-6">
-          <button
-            type="button"
-            onClick={() => setZoom({ src: hero.src, caption: hero.caption })}
-            className="surface-card block w-full p-3 text-left transition-colors hover:border-gold/40 sm:p-4"
-            aria-label={`Enlarge ${project.title} main visual`}
-          >
-            <img
-              src={hero.src}
-              alt={hero.caption}
-              className="max-h-[24rem] w-full rounded-lg object-contain"
-            />
-            <p className="mt-3 text-xs text-muted-foreground">{hero.caption}</p>
-          </button>
-        </Reveal>
-
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <Reveal delay={140}>
-            <div className="surface-card h-full p-6 sm:p-8">
-              <h2 className="font-display text-xl font-bold text-foreground">Overview</h2>
-              {project.overview.map((o) => (
-                <p key={o} className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  {o}
+        {/* Layout B — second screenshot after the text, architecture side */}
+        {shots[1] ? (
+          <Reveal delay={140} className="mt-14">
+            <div className="grid items-center gap-8 md:grid-cols-2">
+              <div className="md:order-1">
+                <h2 className="font-display text-xl font-bold text-foreground">
+                  Automation &amp; architecture
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {shots[1].caption}. Each component is wired so data passes forward in a
+                  predictable shape, with the AI layer making the decisions and the automation
+                  layer carrying out the actions.
                 </p>
+                <ul className="mt-5 grid gap-2">
+                  {project.capabilities.slice(0, 5).map((c) => (
+                    <li key={c} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="md:order-0">
+                <ShotFrame shot={shots[1]} onZoom={setZoom} title={project.title} />
+              </div>
+            </div>
+          </Reveal>
+        ) : null}
+
+        {/* Layout D — remaining screenshots, compact supporting evidence */}
+        {shots.length > 2 ? (
+          <Reveal delay={160} className="mt-14">
+            <h2 className="font-display text-xl font-bold text-foreground">
+              More from this system
+            </h2>
+            <div className="mt-6 grid gap-6 sm:grid-cols-2">
+              {shots.slice(2).map((g) => (
+                <ShotFrame key={g.src} shot={g} onZoom={setZoom} title={project.title} compact />
               ))}
             </div>
           </Reveal>
+        ) : null}
 
-          <Reveal delay={180}>
+        {/* What it automates */}
+        <Reveal delay={180} className="mt-14">
+          <div className="surface-card p-6 sm:p-8">
+            <h2 className="font-display text-xl font-bold text-foreground">What it automates</h2>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {project.automates.map((a) => (
+                <li key={a} className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+
+        {/* Role + Benefits */}
+        <Reveal delay={200} className="mt-6">
+          <div className="grid gap-6 md:grid-cols-2">
             <div className="surface-card h-full p-6 sm:p-8">
-              <h2 className="font-display text-xl font-bold text-foreground">How it works</h2>
-              <ol className="mt-5 space-y-3">
-                {project.howItWorks.map((s, i) => (
-                  <li key={s} className="flex items-start gap-3 text-sm text-muted-foreground">
-                    <span className="mt-0.5 shrink-0 font-mono text-[0.65rem] text-gold">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {s}
+              <h2 className="font-display text-lg font-bold text-foreground">My role</h2>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.role}</p>
+            </div>
+            <div className="surface-card h-full p-6 sm:p-8">
+              <h2 className="font-display text-lg font-bold text-foreground">Benefits</h2>
+              <ul className="mt-4 grid gap-2">
+                {project.benefits.map((b) => (
+                  <li key={b} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
+                    {b}
                   </li>
                 ))}
-              </ol>
-            </div>
-          </Reveal>
-        </div>
-
-        <Reveal delay={200} className="mt-6">
-          <div className="surface-card p-6 sm:p-8">
-            <h2 className="font-display text-xl font-bold text-foreground">Key capabilities</h2>
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {project.capabilities.map((c) => (
-                <li key={c} className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                  {c}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-
-        {/* Workflow / architecture gallery */}
-        <Reveal delay={220} className="mt-6">
-          <div className="surface-card p-6 sm:p-8">
-            <h2 className="font-display text-xl font-bold text-foreground">
-              Workflow &amp; architecture
-            </h2>
-            <div className="mt-6 space-y-6">
-              {project.gallery.map((g) => (
-                <figure key={g.src}>
-                  <button
-                    type="button"
-                    onClick={() => setZoom({ src: g.src, caption: g.caption })}
-                    className="block w-full overflow-hidden rounded-xl border border-border bg-background/50 p-2 transition-colors hover:border-gold/40 sm:p-3"
-                    aria-label={`Enlarge screenshot: ${g.caption}`}
-                  >
-                    <img
-                      src={g.src}
-                      alt={g.caption}
-                      loading="lazy"
-                      className="max-h-[26rem] w-full rounded-lg object-contain"
-                    />
-                  </button>
-                  <figcaption className="mt-2 text-xs text-muted-foreground">{g.caption}</figcaption>
-                </figure>
-              ))}
+              </ul>
             </div>
           </div>
         </Reveal>
 
-        <Reveal delay={240} className="mt-6">
-          <div className="surface-card p-6 sm:p-8">
-            <h2 className="font-display text-xl font-bold text-foreground">Benefits</h2>
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {project.benefits.map((b) => (
-                <li key={b} className="flex items-start gap-3 text-sm text-muted-foreground">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold" aria-hidden="true" />
-                  {b}
-                </li>
-              ))}
-            </ul>
+        {/* CTA */}
+        <Reveal delay={220} className="mt-14">
+          <div className="surface-card flex flex-col items-start gap-4 p-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 className="font-display text-xl font-bold text-foreground">
+                Have a process worth automating?
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                These are examples of systems I've designed — the approach adapts to most business
+                workflows.
+              </p>
+            </div>
+            <Link
+              to="/"
+              hash="contact"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-gold/40 px-5 py-2.5 text-sm text-gold transition-colors hover:bg-gold/10"
+            >
+              Let's build it
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
           </div>
         </Reveal>
 
@@ -229,5 +274,38 @@ function ProjectDetail() {
       <Lightbox src={zoom?.src ?? null} caption={zoom?.caption} onClose={() => setZoom(null)} />
       <FloatingNav />
     </main>
+  );
+}
+
+function ShotFrame({
+  shot,
+  onZoom,
+  title,
+  compact = false,
+}: {
+  shot: { src: string; caption: string };
+  onZoom: (v: { src: string; caption: string }) => void;
+  title: string;
+  compact?: boolean;
+}) {
+  return (
+    <figure className={compact ? "" : "mx-auto w-full max-w-md"}>
+      <button
+        type="button"
+        onClick={() => onZoom({ src: shot.src, caption: shot.caption })}
+        className="block w-full overflow-hidden rounded-xl border border-border bg-background/40 p-2 transition-colors hover:border-gold/40"
+        aria-label={`Enlarge ${title} screenshot: ${shot.caption}`}
+      >
+        <img
+          src={shot.src}
+          alt={shot.caption}
+          loading="lazy"
+          className="h-auto w-full rounded-lg transition-transform duration-500 motion-safe:hover:scale-[1.02]"
+        />
+      </button>
+      <figcaption className="mt-2 text-xs leading-relaxed text-muted-foreground">
+        {shot.caption}
+      </figcaption>
+    </figure>
   );
 }
