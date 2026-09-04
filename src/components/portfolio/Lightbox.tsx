@@ -7,7 +7,7 @@ export function Lightbox({
   onClose,
 }: {
   src: string | null;
-  caption?: string;
+  caption?: string | undefined;
   onClose: () => void;
 }) {
   useEffect(() => {
