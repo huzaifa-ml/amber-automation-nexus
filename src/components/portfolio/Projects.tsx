@@ -121,9 +121,22 @@ export function Projects() {
             <p className="mt-1 truncate text-xs text-muted-foreground">
               {activeProject?.previewTagline ?? ""}
             </p>
-            <p className="mt-1 truncate text-[0.65rem] uppercase tracking-[0.18em] text-gold/70">
-              {activeProject?.previewTech ?? ""}
-            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {(activeProject?.previewTech ?? "").split(" · ").map((t) =>
+                t ? (
+                  <span
+                    key={t}
+                    className="rounded-full border border-gold/25 px-2 py-0.5 text-[0.6rem] uppercase tracking-[0.14em] text-gold/80"
+                  >
+                    {t}
+                  </span>
+                ) : null,
+              )}
+            </div>
+            <span className="mt-3 inline-flex items-center gap-1 text-[0.62rem] uppercase tracking-[0.22em] text-gold">
+              View details
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </span>
           </div>
         </div>
       </div>
