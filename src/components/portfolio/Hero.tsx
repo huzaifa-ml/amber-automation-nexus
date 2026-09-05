@@ -133,17 +133,18 @@ export function Hero() {
               {NODES.map(({ label, Icon, angle, radius, dur, float, fg }, i) => (
                 <div
                   key={label}
-                  className="node-orbit absolute left-1/2 top-1/2 h-0 w-0"
-                  style={{
-                    transform: `rotate(${angle}deg)`,
-                    animationDuration: `${dur}s`,
-                    animationDelay: `${-i * 7}s`,
-                  }}
+                  className="absolute inset-0"
+                  style={{ transform: `rotate(${angle}deg)` }}
                 >
                   <div
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
-                    style={{ left: 0, top: `-${radius}%` }}
+                    className="node-orbit absolute inset-0"
+                    style={{ animationDuration: `${dur}s`, animationDelay: `${-i * 7}s` }}
                   >
+                    <div
+                      className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+                      style={{ top: `${50 - radius}%` }}
+                    >
+
                     <div
                       className="node-counter"
                       style={{ animationDuration: `${dur}s`, animationDelay: `${-i * 7}s` }}
