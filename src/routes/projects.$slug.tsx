@@ -71,6 +71,61 @@ function ProjectDetail() {
           </div>
         </Reveal>
 
+        {/* Compact, illustrative process figures */}
+        <Reveal delay={60} className="mt-10">
+          <div className="surface-card grid gap-6 p-6 sm:p-8 md:grid-cols-[1fr_1.1fr]">
+            <div>
+              <h2 className="font-display text-lg font-bold text-foreground">Process snapshot</h2>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                Illustrative view of how this system is structured — workflow characteristics, not
+                measured client results.
+              </p>
+              <dl className="mt-5 grid grid-cols-3 gap-3">
+                {project.figures.map((f) => (
+                  <div key={f.label} className="rounded-lg border border-border/70 bg-card/40 p-3">
+                    <dt className="sr-only">{f.label}</dt>
+                    <dd className="font-display text-base font-bold leading-tight text-gold">
+                      {f.value}
+                    </dd>
+                    <p className="mt-1 text-[0.62rem] uppercase tracking-[0.14em] text-muted-foreground">
+                      {f.label}
+                    </p>
+                  </div>
+                ))}
+              </dl>
+            </div>
+
+            <div>
+              <p className="text-[0.6rem] uppercase tracking-[0.24em] text-gold/80">
+                Automation coverage by stage
+              </p>
+              <ul className="mt-4 grid gap-3">
+                {project.howItWorks.slice(0, 4).map((s, i) => (
+                  <li key={s} className="grid grid-cols-[1.6rem_1fr] items-center gap-3">
+                    <span className="font-mono text-[0.65rem] text-gold">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-border/70">
+                        <div
+                          className="h-full rounded-full bg-gold/70"
+                          style={{ width: `${55 + i * 15}%` }}
+                        />
+                      </div>
+                      <p className="mt-1.5 line-clamp-1 text-[0.7rem] text-muted-foreground">{s}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-3 text-[0.6rem] text-muted-foreground/70">
+                Bars indicate how far each stage runs without manual input — illustrative, not
+                measured.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+
         {/* Layout A — first screenshot beside the overview */}
         {shots[0] ? (
           <Reveal delay={80} className="mt-14">
