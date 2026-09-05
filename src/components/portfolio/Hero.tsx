@@ -149,16 +149,25 @@ export function Hero() {
                       style={{ animationDuration: `${dur}s`, animationDelay: `${-i * 7}s` }}
                     >
                       <div
-                        className="node-float hero-node-in flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/25 bg-[linear-gradient(150deg,color-mix(in_oklab,var(--surface-2)_92%,transparent),color-mix(in_oklab,var(--background)_92%,transparent))] shadow-[0_14px_30px_-14px_rgba(0,0,0,0.9),inset_0_1px_0_color-mix(in_oklab,var(--gold)_18%,transparent)] backdrop-blur-sm sm:h-14 sm:w-14"
-                        style={{
-                          transform: `rotate(${-angle}deg)`,
-                          animationDelay: `${float}s, ${1.5 + i * 0.16}s`,
-                        }}
-                        title={label}
+                        className="hero-node-in"
+                        style={{ animationDelay: `${1.5 + i * 0.16}s` }}
                       >
-                        <Icon className="h-6 w-6 sm:h-7 sm:w-7" style={{ color: fg }} strokeWidth={2} />
+                        <div className="node-float" style={{ animationDelay: `${float}s` }}>
+                          <div
+                            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/25 bg-[linear-gradient(150deg,color-mix(in_oklab,var(--surface-2)_92%,transparent),color-mix(in_oklab,var(--background)_92%,transparent))] shadow-[0_14px_30px_-14px_rgba(0,0,0,0.9),inset_0_1px_0_color-mix(in_oklab,var(--gold)_18%,transparent)] backdrop-blur-sm sm:h-14 sm:w-14"
+                            style={{ transform: `rotate(${-angle}deg)` }}
+                            title={label}
+                          >
+                            <Icon
+                              className="h-6 w-6 sm:h-7 sm:w-7"
+                              style={{ color: fg }}
+                              strokeWidth={2}
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               ))}
