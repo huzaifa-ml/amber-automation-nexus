@@ -2,45 +2,55 @@ import { ArrowRight, Workflow, Bot, Code2, Database, Box } from "lucide-react";
 import huzaifa from "@/assets/huzaifa-cutout.png";
 import goldRing from "@/assets/gold-ring.png";
 
-const ORBIT = [
-  { label: "n8n", Icon: Workflow, angle: 0, bg: "#1f2126", fg: "#FF6D5A" },
-  { label: "AI Agents", Icon: Bot, angle: 72, bg: "#6D3BF5", fg: "#FFFFFF" },
-  { label: "Python", Icon: Code2, angle: 144, bg: "#242A36", fg: "#FFD343" },
-  { label: "RAG", Icon: Database, angle: 216, bg: "#0EA47A", fg: "#FFFFFF" },
-  { label: "Docker", Icon: Box, angle: 288, bg: "#2496ED", fg: "#FFFFFF" },
+/** Each node has its own angle, orbit radius, speed and float delay → independent motion. */
+const NODES = [
+  { label: "n8n", Icon: Workflow, angle: -8, radius: 50, dur: 92, float: 0, fg: "#FF6D5A" },
+  { label: "AI Agents", Icon: Bot, angle: 62, radius: 54, dur: 118, float: 1.2, fg: "#C9A227" },
+  { label: "Python", Icon: Code2, angle: 143, radius: 48, dur: 104, float: 2.1, fg: "#FFD343" },
+  { label: "RAG", Icon: Database, angle: 214, radius: 55, dur: 132, float: 0.6, fg: "#4FD1A5" },
+  { label: "Docker", Icon: Box, angle: 292, radius: 49, dur: 110, float: 1.7, fg: "#7FC7F5" },
 ];
 
 export function Hero() {
   return (
     <section
       id="home"
-      className="ambient-gold relative flex min-h-screen scroll-mt-20 items-center px-5 pb-40 pt-14 sm:px-8 sm:pt-16 lg:pb-44 lg:pt-12"
+      className="ambient-gold relative flex min-h-screen scroll-mt-20 items-center overflow-hidden px-5 pb-40 pt-14 sm:px-8 sm:pt-16 lg:pb-44 lg:pt-12"
     >
+      {/* Right-side system indicator */}
+      <div
+        aria-hidden="true"
+        className="hero-stage-1 pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex"
+      >
+        <span className="text-[0.55rem] uppercase tracking-[0.4em] text-muted-foreground/50 [writing-mode:vertical-rl]">
+          system online
+        </span>
+        <span className="h-28 w-px bg-gradient-to-b from-transparent via-gold/40 to-transparent" />
+        <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-gold/70" />
+        <span className="h-16 w-px bg-gradient-to-b from-gold/25 to-transparent" />
+        <span className="h-1 w-1 rounded-full bg-gold/40" />
+      </div>
+
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         {/* Left: text */}
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-3.5 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-gold">
+          <span className="hero-stage-6 inline-flex items-center gap-2 rounded-full border border-gold/40 px-3.5 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-gold">
             <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
             AI Automation Architect
           </span>
 
-          <h1 className="mt-6 max-w-2xl font-display text-[clamp(2.1rem,6vw,3.9rem)] font-bold uppercase leading-[1.02] tracking-[-0.03em]">
-            <span className="block text-foreground">Architecting AI systems</span>
-            <span className="block text-gold">that run the work for you</span>
+          <h1 className="mt-6 font-display text-[clamp(3rem,11vw,7rem)] font-bold uppercase leading-[0.88] tracking-[-0.045em]">
+            <span className="hero-stage-6 block text-foreground">Think</span>
+            <span className="hero-stage-6b block text-gold">Build</span>
+            <span className="hero-stage-6c block text-foreground/85">Scale</span>
           </h1>
 
-          <div className="mt-6 max-w-xl space-y-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            <p>
-              I build systems that save time—connecting AI, automation, and APIs to turn
-              repetitive work into smarter workflows.
-            </p>
-            <p>
-              From idea to execution, I design intelligent solutions that run behind the scenes
-              and keep business moving.
-            </p>
-          </div>
+          <p className="hero-stage-7 mt-6 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
+            I design AI systems that turn repetitive work into intelligent, self-running
+            workflows.
+          </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="hero-stage-7 mt-9 flex flex-wrap gap-3">
             <a
               href="#projects"
               className="group inline-flex items-center gap-2 rounded-lg bg-gold px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_30px_-10px_var(--gold)] transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_38px_-8px_var(--gold)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
@@ -62,27 +72,50 @@ export function Hero() {
               />
             </a>
           </div>
+
+          <div className="hero-stage-7 mt-8 flex items-center gap-4 text-[0.6rem] uppercase tracking-[0.3em] text-muted-foreground/60">
+            <span className="inline-flex items-center gap-2">
+              <span className="pulse-dot h-1 w-1 rounded-full bg-gold" aria-hidden="true" />
+              agents active
+            </span>
+            <span className="hidden h-px w-10 bg-border sm:block" />
+            <span className="hidden sm:inline">n8n · rag · python</span>
+          </div>
         </div>
 
-        {/* Right: portrait + rotating tech symbols */}
-        <div className="relative mx-auto w-[88%] max-w-[21rem] sm:w-full sm:max-w-[27rem]">
-          <div
-            aria-hidden="true"
-            className="absolute inset-[-14%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--gold)_16%,transparent),transparent_65%)] blur-2xl"
-          />
-
+        {/* Right: layered orbital system + portrait */}
+        <div className="relative mx-auto w-[86%] max-w-[21rem] sm:w-full sm:max-w-[27rem]">
           <div className="relative aspect-square">
-            {/* Golden brush ring backdrop */}
-            <img
-              src={goldRing}
-              alt=""
+            {/* Layer 4 — halo */}
+            <div
               aria-hidden="true"
-              width={1024}
-              height={1024}
-              className="ring-spin absolute inset-[4%] h-[92%] w-[92%] select-none opacity-90"
+              className="hero-stage-1 absolute inset-[-12%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--gold)_16%,transparent),transparent_65%)] blur-2xl"
             />
 
-            {/* Portrait cutout */}
+            {/* Layer 1/2/3 — rings + travelling nodes (always behind portrait) */}
+            <div aria-hidden="true" className="hero-stage-2 absolute inset-0">
+              <img
+                src={goldRing}
+                alt=""
+                width={1024}
+                height={1024}
+                className="ring-spin absolute inset-[4%] h-[92%] w-[92%] select-none opacity-80"
+              />
+              <div className="ring-slow absolute inset-[1%] rounded-full border border-gold/15" />
+              <div className="ring-slow-rev absolute inset-[13%] rounded-full border border-dashed border-gold/10" />
+              <div className="ring-drift absolute inset-[-6%] rounded-full border border-gold/[0.07]">
+                <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/70 shadow-[0_0_10px_var(--gold)]" />
+                <span className="absolute bottom-[12%] right-[6%] h-1 w-1 rounded-full bg-gold/50" />
+              </div>
+              {/* Layer: connecting lines, behind icons and portrait */}
+              <div className="ring-slow absolute inset-[8%] rounded-full opacity-40">
+                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left bg-gradient-to-r from-gold/35 to-transparent" />
+                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left rotate-[130deg] bg-gradient-to-r from-gold/25 to-transparent" />
+                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left rotate-[250deg] bg-gradient-to-r from-gold/25 to-transparent" />
+              </div>
+            </div>
+
+            {/* Portrait — above every background layer */}
             <img
               src={huzaifa}
               alt="Portrait of Muhammad Huzaifa, AI Automation Architect"
@@ -92,25 +125,38 @@ export function Hero() {
                 maskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
                 WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
               }}
-              className="absolute bottom-0 left-1/2 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.65)]"
+              className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.7)]"
             />
 
-            {/* Rotating symbols */}
-            <div className="orbit-spin absolute inset-0" aria-hidden="true">
-              {ORBIT.map(({ label, Icon, angle, bg, fg }) => (
+            {/* Layer 5 — technology nodes, foreground */}
+            <div className="pointer-events-none absolute inset-0 z-30" aria-hidden="true">
+              {NODES.map(({ label, Icon, angle, radius, dur, float, fg }, i) => (
                 <div
                   key={label}
-                  className="absolute inset-0"
-                  style={{ transform: `rotate(${angle}deg)` }}
+                  className="node-orbit absolute left-1/2 top-1/2 h-0 w-0"
+                  style={{
+                    transform: `rotate(${angle}deg)`,
+                    animationDuration: `${dur}s`,
+                    animationDelay: `${-i * 7}s`,
+                  }}
                 >
-                  <div className="absolute left-1/2 top-0 -ml-[28px] -mt-[28px] h-14 w-14">
-                    <div className="orbit-counter h-full w-full">
+                  <div
+                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    style={{ left: 0, top: `-${radius}%` }}
+                  >
+                    <div
+                      className="node-counter"
+                      style={{ animationDuration: `${dur}s`, animationDelay: `${-i * 7}s` }}
+                    >
                       <div
-                        className="flex h-full w-full items-center justify-center rounded-[1.15rem] shadow-[0_18px_38px_-14px_rgba(0,0,0,0.85)] ring-1 ring-white/10"
-                        style={{ transform: `rotate(${-angle}deg)`, backgroundColor: bg }}
+                        className="node-float hero-node-in flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/25 bg-[linear-gradient(150deg,color-mix(in_oklab,var(--surface-2)_92%,transparent),color-mix(in_oklab,var(--background)_92%,transparent))] shadow-[0_14px_30px_-14px_rgba(0,0,0,0.9),inset_0_1px_0_color-mix(in_oklab,var(--gold)_18%,transparent)] backdrop-blur-sm sm:h-14 sm:w-14"
+                        style={{
+                          transform: `rotate(${-angle}deg)`,
+                          animationDelay: `${float}s, ${1.5 + i * 0.16}s`,
+                        }}
                         title={label}
                       >
-                        <Icon className="h-7 w-7" style={{ color: fg }} strokeWidth={2.1} />
+                        <Icon className="h-6 w-6 sm:h-7 sm:w-7" style={{ color: fg }} strokeWidth={2} />
                       </div>
                     </div>
                   </div>
