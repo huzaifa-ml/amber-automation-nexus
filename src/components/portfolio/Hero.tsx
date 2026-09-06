@@ -107,16 +107,9 @@ export function Hero() {
                 className="ring-spin absolute inset-[4%] h-[92%] w-[92%] select-none opacity-80"
               />
               <div className="ring-slow absolute inset-[1%] rounded-full border border-gold/15" />
-              <div className="ring-slow-rev absolute inset-[13%] rounded-full border border-dashed border-gold/10" />
               <div className="ring-drift absolute inset-[-6%] rounded-full border border-gold/[0.07]">
                 <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/70 shadow-[0_0_10px_var(--gold)]" />
                 <span className="absolute bottom-[12%] right-[6%] h-1 w-1 rounded-full bg-gold/50" />
-              </div>
-              {/* Layer: connecting lines, behind icons and portrait */}
-              <div className="ring-slow absolute inset-[8%] rounded-full opacity-40">
-                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left bg-gradient-to-r from-gold/35 to-transparent" />
-                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left rotate-[130deg] bg-gradient-to-r from-gold/25 to-transparent" />
-                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left rotate-[250deg] bg-gradient-to-r from-gold/25 to-transparent" />
               </div>
             </div>
 
@@ -127,9 +120,10 @@ export function Hero() {
               width={928}
               height={1152}
               style={{
-                maskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
-                WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+                maskImage: "linear-gradient(to bottom, #000 90%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to bottom, #000 90%, transparent 100%)",
               }}
+
               className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.7)]"
             />
 
