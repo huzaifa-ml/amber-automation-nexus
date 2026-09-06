@@ -33,22 +33,27 @@ export function Hero() {
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         {/* Left: text */}
-        <div>
+        <div className="pt-[6%] lg:pt-[10%]">
           <span className="hero-stage-6 inline-flex items-center gap-2 rounded-full border border-gold/40 px-3.5 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-gold">
             <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
             AI Automation Architect
           </span>
 
-          <h1 className="mt-6 font-display text-[clamp(3rem,11vw,7rem)] font-bold uppercase leading-[0.88] tracking-[-0.045em]">
+          <h1 className="mt-6 font-display text-[clamp(2.4rem,8.8vw,5.6rem)] font-bold uppercase leading-[0.88] tracking-[-0.045em]">
             <span className="hero-stage-6 block text-foreground">Think</span>
             <span className="hero-stage-6b block text-gold">Build</span>
             <span className="hero-stage-6c block text-foreground/85">Scale</span>
           </h1>
 
           <p className="hero-stage-7 mt-6 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            I design AI systems that turn repetitive work into intelligent, self-running
-            workflows.
+            I build systems that save time—connecting AI, automation, and APIs to turn
+            repetitive work into smarter workflows.
           </p>
+          <p className="hero-stage-7 mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
+            From idea to execution, I design intelligent solutions that run behind the
+            scenes and keep business moving.
+          </p>
+
 
           <div className="hero-stage-7 mt-9 flex flex-wrap gap-3">
             <a
@@ -102,16 +107,9 @@ export function Hero() {
                 className="ring-spin absolute inset-[4%] h-[92%] w-[92%] select-none opacity-80"
               />
               <div className="ring-slow absolute inset-[1%] rounded-full border border-gold/15" />
-              <div className="ring-slow-rev absolute inset-[13%] rounded-full border border-dashed border-gold/10" />
               <div className="ring-drift absolute inset-[-6%] rounded-full border border-gold/[0.07]">
                 <span className="absolute left-1/2 top-0 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/70 shadow-[0_0_10px_var(--gold)]" />
                 <span className="absolute bottom-[12%] right-[6%] h-1 w-1 rounded-full bg-gold/50" />
-              </div>
-              {/* Layer: connecting lines, behind icons and portrait */}
-              <div className="ring-slow absolute inset-[8%] rounded-full opacity-40">
-                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left bg-gradient-to-r from-gold/35 to-transparent" />
-                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left rotate-[130deg] bg-gradient-to-r from-gold/25 to-transparent" />
-                <span className="absolute left-1/2 top-1/2 h-px w-[44%] origin-left rotate-[250deg] bg-gradient-to-r from-gold/25 to-transparent" />
               </div>
             </div>
 
@@ -122,10 +120,13 @@ export function Hero() {
               width={928}
               height={1152}
               style={{
-                maskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
-                WebkitMaskImage: "linear-gradient(to bottom, #000 78%, transparent 99%)",
+                maskImage:
+                  "linear-gradient(to bottom, #000 80%, rgba(0,0,0,0.5) 93%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 80%, rgba(0,0,0,0.5) 93%, transparent 100%)",
               }}
-              className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.7)]"
+
+              className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain"
             />
 
             {/* Layer 5 — technology nodes, foreground */}
