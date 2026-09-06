@@ -1,15 +1,19 @@
-import { ArrowRight, Workflow, Bot, Code2, Database, Box } from "lucide-react";
+import { ArrowRight, Workflow, Bot, Code2, Database, Box, Webhook } from "lucide-react";
 import huzaifa from "@/assets/huzaifa-cutout.png";
 import goldRing from "@/assets/gold-ring.png";
 
-/** Each node has its own angle, orbit radius, speed and float delay → independent motion. */
+/** Six evenly spaced brand tiles sharing one slow orbit, as in the reference. */
+const ORBIT_DURATION = 110;
+const ORBIT_RADIUS = 56;
 const NODES = [
-  { label: "n8n", Icon: Workflow, angle: -8, radius: 50, dur: 92, float: 0, fg: "#FF6D5A" },
-  { label: "AI Agents", Icon: Bot, angle: 62, radius: 54, dur: 118, float: 1.2, fg: "#C9A227" },
-  { label: "Python", Icon: Code2, angle: 143, radius: 48, dur: 104, float: 2.1, fg: "#FFD343" },
-  { label: "RAG", Icon: Database, angle: 214, radius: 55, dur: 132, float: 0.6, fg: "#4FD1A5" },
-  { label: "Docker", Icon: Box, angle: 292, radius: 49, dur: 110, float: 1.7, fg: "#7FC7F5" },
+  { label: "n8n", Icon: Workflow, from: "#FF6D5A", to: "#E8412C", float: 0 },
+  { label: "AI Agents", Icon: Bot, from: "#F4D06A", to: "#C9931F", float: 1.2 },
+  { label: "Python", Icon: Code2, from: "#4B8BBE", to: "#2F5F8A", float: 2.1 },
+  { label: "RAG", Icon: Database, from: "#4FD1A5", to: "#1F9B76", float: 0.6 },
+  { label: "Docker", Icon: Box, from: "#7FC7F5", to: "#1D77C9", float: 1.7 },
+  { label: "APIs", Icon: Webhook, from: "#B98CFF", to: "#7B3FE4", float: 2.6 },
 ];
+
 
 export function Hero() {
   return (
