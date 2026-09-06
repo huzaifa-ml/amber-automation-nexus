@@ -121,12 +121,12 @@ export function Hero() {
               height={1152}
               style={{
                 maskImage:
-                  "linear-gradient(to bottom, #000 58%, rgba(0,0,0,0.55) 84%, transparent 100%)",
+                  "linear-gradient(to bottom, #000 80%, rgba(0,0,0,0.5) 93%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, #000 58%, rgba(0,0,0,0.55) 84%, transparent 100%)",
+                  "linear-gradient(to bottom, #000 80%, rgba(0,0,0,0.5) 93%, transparent 100%)",
               }}
 
-              className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.7)]"
+              className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain"
             />
 
             {/* Layer 5 — technology nodes, foreground */}
