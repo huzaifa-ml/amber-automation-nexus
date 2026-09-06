@@ -33,22 +33,27 @@ export function Hero() {
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         {/* Left: text */}
-        <div>
+        <div className="pt-[6%] lg:pt-[10%]">
           <span className="hero-stage-6 inline-flex items-center gap-2 rounded-full border border-gold/40 px-3.5 py-1.5 text-[0.65rem] font-medium uppercase tracking-[0.28em] text-gold">
             <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-gold" aria-hidden="true" />
             AI Automation Architect
           </span>
 
-          <h1 className="mt-6 font-display text-[clamp(3rem,11vw,7rem)] font-bold uppercase leading-[0.88] tracking-[-0.045em]">
+          <h1 className="mt-6 font-display text-[clamp(2.4rem,8.8vw,5.6rem)] font-bold uppercase leading-[0.88] tracking-[-0.045em]">
             <span className="hero-stage-6 block text-foreground">Think</span>
             <span className="hero-stage-6b block text-gold">Build</span>
             <span className="hero-stage-6c block text-foreground/85">Scale</span>
           </h1>
 
           <p className="hero-stage-7 mt-6 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
-            I design AI systems that turn repetitive work into intelligent, self-running
-            workflows.
+            I build systems that save time—connecting AI, automation, and APIs to turn
+            repetitive work into smarter workflows.
           </p>
+          <p className="hero-stage-7 mt-3 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
+            From idea to execution, I design intelligent solutions that run behind the
+            scenes and keep business moving.
+          </p>
+
 
           <div className="hero-stage-7 mt-9 flex flex-wrap gap-3">
             <a
