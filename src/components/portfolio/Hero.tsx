@@ -93,7 +93,7 @@ export function Hero() {
         </div>
 
         {/* Right: layered orbital system + portrait */}
-        <div className="relative mx-auto w-[86%] max-w-[21rem] sm:w-full sm:max-w-[27rem]">
+        <div className="relative mx-auto w-[94%] max-w-[24rem] sm:w-full sm:max-w-[30rem]">
           <div className="relative aspect-square">
             {/* Layer 4 — halo */}
             <div
@@ -101,8 +101,8 @@ export function Hero() {
               className="hero-stage-1 absolute inset-[-12%] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--gold)_16%,transparent),transparent_65%)] blur-2xl"
             />
 
-            {/* Layer 1/2/3 — rings + travelling nodes (always behind portrait) */}
-            <div aria-hidden="true" className="hero-stage-2 absolute inset-0">
+            {/* Layer 1/2/3 — rings (always behind portrait) */}
+            <div aria-hidden="true" className="hero-stage-2 absolute inset-0 z-0">
               <img
                 src={goldRing}
                 alt=""
@@ -129,56 +129,59 @@ export function Hero() {
                 WebkitMaskImage:
                   "linear-gradient(to bottom, #000 80%, rgba(0,0,0,0.5) 93%, transparent 100%)",
               }}
-
-              className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[98%] w-auto max-w-none -translate-x-1/2 select-none object-contain"
+              className="hero-stage-4 absolute bottom-0 left-1/2 z-20 h-[104%] w-auto max-w-none -translate-x-1/2 select-none object-contain"
             />
 
-            {/* Layer 5 — technology nodes, foreground */}
+            {/* Layer 5 — technology tiles, foreground, evenly spaced on one slow orbit */}
             <div className="pointer-events-none absolute inset-0 z-30" aria-hidden="true">
-              {NODES.map(({ label, Icon, angle, radius, dur, float, fg }, i) => (
-                <div
-                  key={label}
-                  className="absolute inset-0"
-                  style={{ transform: `rotate(${angle}deg)` }}
-                >
+              {NODES.map(({ label, Icon, from, to, float }, i) => {
+                const angle = (360 / NODES.length) * i - 20;
+                return (
                   <div
-                    className="node-orbit absolute inset-0"
-                    style={{ animationDuration: `${dur}s`, animationDelay: `${-i * 7}s` }}
+                    key={label}
+                    className="absolute inset-0"
+                    style={{ transform: `rotate(${angle}deg)` }}
                   >
                     <div
-                      className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
-                      style={{ top: `${50 - radius}%` }}
-                    >
-
-                    <div
-                      className="node-counter"
-                      style={{ animationDuration: `${dur}s`, animationDelay: `${-i * 7}s` }}
+                      className="node-orbit absolute inset-0"
+                      style={{ animationDuration: `${ORBIT_DURATION}s` }}
                     >
                       <div
-                        className="hero-node-in"
-                        style={{ animationDelay: `${1.5 + i * 0.16}s` }}
+                        className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+                        style={{ top: `${50 - ORBIT_RADIUS}%` }}
                       >
-                        <div className="node-float" style={{ animationDelay: `${float}s` }}>
+                        <div
+                          className="node-counter"
+                          style={{ animationDuration: `${ORBIT_DURATION}s` }}
+                        >
                           <div
-                            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/25 bg-[linear-gradient(150deg,color-mix(in_oklab,var(--surface-2)_92%,transparent),color-mix(in_oklab,var(--background)_92%,transparent))] shadow-[0_14px_30px_-14px_rgba(0,0,0,0.9),inset_0_1px_0_color-mix(in_oklab,var(--gold)_18%,transparent)] backdrop-blur-sm sm:h-14 sm:w-14"
-                            style={{ transform: `rotate(${-angle}deg)` }}
-                            title={label}
+                            className="hero-node-in"
+                            style={{ animationDelay: `${1.5 + i * 0.16}s` }}
                           >
-                            <Icon
-                              className="h-6 w-6 sm:h-7 sm:w-7"
-                              style={{ color: fg }}
-                              strokeWidth={2}
-                            />
+                            <div className="node-float" style={{ animationDelay: `${float}s` }}>
+                              <div
+                                className="flex h-14 w-14 items-center justify-center rounded-[1.1rem] shadow-[0_18px_34px_-14px_rgba(0,0,0,0.95),inset_0_1px_0_rgba(255,255,255,0.25)] sm:h-16 sm:w-16"
+                                style={{
+                                  transform: `rotate(${-angle}deg)`,
+                                  backgroundImage: `linear-gradient(150deg, ${from}, ${to})`,
+                                }}
+                                title={label}
+                              >
+                                <Icon
+                                  className="h-7 w-7 text-white sm:h-8 sm:w-8"
+                                  strokeWidth={2.1}
+                                />
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    </div>
                   </div>
-                </div>
-
-              ))}
+                );
+              })}
             </div>
+
           </div>
         </div>
       </div>
